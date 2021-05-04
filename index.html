@@ -71,157 +71,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-this指向的四种绑定规则" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/my-blog/2021/04/28/this%E6%8C%87%E5%90%91%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%BB%91%E5%AE%9A%E8%A7%84%E5%88%99/" class="article-date">
-  <time class="dt-published" datetime="2021-04-28T03:53:31.000Z" itemprop="datePublished">2021-04-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/my-blog/2021/04/28/this%E6%8C%87%E5%90%91%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%BB%91%E5%AE%9A%E8%A7%84%E5%88%99/">this指向的四种绑定规则</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="1-默认绑定规则；"><a href="#1-默认绑定规则；" class="headerlink" title="1.默认绑定规则；"></a>1.默认绑定规则；</h2><p> 立即执行函数 </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">this</span>); <span class="comment">//window</span></span><br><span class="line"><span class="comment">// 函数的独立调用</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">test(); <span class="comment">//window</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="2-隐式绑定规则（隐式丢失和参数赋值）；"><a href="#2-隐式绑定规则（隐式丢失和参数赋值）；" class="headerlink" title="2.隐式绑定规则（隐式丢失和参数赋值）；"></a>2.隐式绑定规则（隐式丢失和参数赋值）；</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">var</span> obj=&#123;</span><br><span class="line">          a:<span class="number">2</span>,</span><br><span class="line">          foo:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">             <span class="built_in">console</span>.log(<span class="built_in">this</span>); <span class="comment">//指向OBJ 2.隐式绑定规则</span></span><br><span class="line">             <span class="comment">//对象.语法调用</span></span><br><span class="line">             <span class="comment">//谁调用就指向谁</span></span><br><span class="line">             <span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                 <span class="built_in">console</span>.log(<span class="built_in">this</span>);<span class="comment">//</span></span><br><span class="line">             &#125;</span><br><span class="line">             test1();<span class="comment">//独立调用就指向window                      		闭包：return test1（）//window</span></span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      obj.foo();<span class="comment">//&#123;a:2, foo: f()&#125;</span></span><br></pre></td></tr></table></figure>
-
-<pre><code> 预编译的时候this就有了
-</code></pre>
-<p>​    函数执行时会产生自己的指向 函数不执行this没有任何意义</p>
-<p>​    每个this都代表一个函数执行</p>
-<p>​    当函数执行的时候，导致函数被定义，并抛出，就会产生闭包</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = <span class="number">0</span>;</span><br><span class="line">       <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">           <span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">       &#125; </span><br><span class="line">       <span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">           a: <span class="number">2</span>,</span><br><span class="line">           foo: foo</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">// obj1.foo();</span></span><br><span class="line">       <span class="comment">// 隐式丢失 可理解为独立调用</span></span><br><span class="line">       <span class="keyword">var</span> bar = obj1.foo; <span class="comment">//var bar = foo; </span></span><br><span class="line">       bar();</span><br><span class="line">       foo(); <span class="comment">//ECMA函数预编译 </span></span><br><span class="line">       <span class="comment">// 参数赋值的情况</span></span><br><span class="line">       <span class="function"><span class="keyword">function</span> <span class="title">bar1</span>(<span class="params">fn</span>)</span>&#123;<span class="comment">// 父函数是有能力决定子函数this指向的</span></span><br><span class="line">           fn(); <span class="comment">///独立调用  fn.call(obj)//指向obj fn(obj)</span></span><br><span class="line">       &#125;  </span><br><span class="line">       bar1(obj1.foo) <span class="comment">///独立调用</span></span><br><span class="line">       <span class="comment">// 预编译的过程中，实参被赋值为形参，（值的拷贝过程，浅拷贝）</span></span><br></pre></td></tr></table></figure>
-<h3 id="api-接口中指明的；"><a href="#api-接口中指明的；" class="headerlink" title="api 接口中指明的；"></a>api 接口中指明的；</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item,index,arr</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>); <span class="comment">//window</span></span><br><span class="line">&#125;,<span class="built_in">this</span>);</span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>);<span class="comment">//window</span></span><br><span class="line">    <span class="keyword">return</span> a-b;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">setInterval</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>);<span class="comment">//window</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="3-显式绑定规则；"><a href="#3-显式绑定规则；" class="headerlink" title="3.显式绑定规则；"></a>3.显式绑定规则；</h2><h4 id="显式绑定-：call-apply-bind"><a href="#显式绑定-：call-apply-bind" class="headerlink" title="显式绑定 ：call apply bind"></a>显式绑定 ：call apply bind</h4><p>采用call()和apply()，通过传入一个对象（若为基本类型，会被封装函数转为对象—装箱），将this绑定到该对象。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a,b,c,d,e</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">2</span>,</span><br><span class="line">    foo: foo</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> bar = obj.foo;</span><br><span class="line"></span><br><span class="line">bar.call(obj)</span><br><span class="line">bar.apply(obj)<span class="comment">//obj  apply传参是数组</span></span><br><span class="line">bar.bind(obj)<span class="comment">//bar.bind(obj)(参数)返回一个函数，本身并不会执行</span></span><br><span class="line">bar.call(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)<span class="comment">//Number&#123;1&#125;  通过包装的方式 显示相应的包装类 undefined null 没有包装类</span></span><br><span class="line">bar.call(<span class="literal">undefined</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)<span class="comment">//此时会采用默认的this window</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="4-new-绑定规则"><a href="#4-new-绑定规则" class="headerlink" title="4.new 绑定规则"></a>4.new 绑定规则</h2><p>任何函数都可能被用作构造函数，当函数被new操作符“构造调用”时，会执行下面操作：</p>
-<p>创建一个新对象（若该函数不是JS内置的，则创建一个新的Object对象）；<br>将this绑定到这个对象；<br>执行构造函数中的代码（为这个新对象添加属性）；<br>若函数没有返回其他对象，则自动返回这个新对象；若函数有return返回的是非对象，则还是自动返回这个新对象，即覆盖那个非对象。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.a = a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bar = <span class="keyword">new</span> foo( <span class="number">2</span> );</span><br><span class="line"><span class="built_in">console</span>.log( bar.a ); <span class="comment">// 2</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h1><p>箭头函数：不使用这四个this规则，根据词法作用域来决定this。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 返回一个箭头函数</span></span><br><span class="line">    <span class="keyword">return</span> (a) =&amp;gt; &#123;</span><br><span class="line">        <span class="comment">// `this` here is lexically adopted from `foo()`</span></span><br><span class="line">        <span class="built_in">console</span>.log( <span class="built_in">this</span>.a );</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">    a: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">    a: <span class="number">3</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// foo()不是箭头函数，他的this被绑定到obj1</span></span><br><span class="line"><span class="keyword">var</span> bar = foo.call( obj1 ); <span class="comment">// foo.call( obj1 )返回箭头函数，所以bar为箭头函数</span></span><br><span class="line">bar.call( obj2 ); <span class="comment">// 2! 箭头函数的this无法被修改，new也不行</span></span><br><span class="line"><span class="comment">//如下为和箭头函数一样的模式：</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> self = <span class="built_in">this</span>; <span class="comment">// lexical capture of `this`</span></span><br><span class="line">    <span class="built_in">setTimeout</span>( <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log( self.a );</span><br><span class="line">    &#125;, <span class="number">100</span> );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">foo.call( obj ); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="优先级问题"><a href="#优先级问题" class="headerlink" title="优先级问题"></a>优先级问题</h1><p>4&gt;3&gt;2&gt;1</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wtyx-2018.github.io/my-blog/2021/04/28/this%E6%8C%87%E5%90%91%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%BB%91%E5%AE%9A%E8%A7%84%E5%88%99/" data-id="ckoa5a9we0001rsux5kvb7bqe" data-title="this指向的四种绑定规则" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-没想好" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/my-blog/2021/04/28/%E6%B2%A1%E6%83%B3%E5%A5%BD/" class="article-date">
-  <time class="dt-published" datetime="2021-04-28T03:53:31.000Z" itemprop="datePublished">2021-04-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/my-blog/2021/04/28/%E6%B2%A1%E6%83%B3%E5%A5%BD/">跨域问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="跨域请求为什么会出现"><a href="#跨域请求为什么会出现" class="headerlink" title="跨域请求为什么会出现"></a>跨域请求为什么会出现</h3><p>同源策略是浏览器核心基础的安全策略，用来防御非法的攻击，但是我们不能因为防御非法攻击就把跨域都拦截掉</p>
-<p>现在的前端开发中，我们经常需要调用第三方提供的接口（例如mock server、fake api），专业化分工的出现有很多专业的信息服务提供商来为前端开发提供各种接口，这种情况下就要进行跨域请求（这类前端接口服务很多都是采用cors方式来解决跨域问题的）。</p>
-<p>还有一类就是前后端分离的项目中，前后端分属于不同的服务，采用这种架构时跨域问题就存在。这类项目很多是采用反向代理的方式来解决跨域问题。</p>
-<p>在做一些vue项目的时候向后台发请求，总要解决跨域问题</p>
-<p>1.修改浏览器的安全设置</p>
-<p>1.jsonp （缺点，只能进行get请求，不推荐）</p>
-<p>2.cors   重写cors协议 </p>
-<p>3.代理（官方推荐）</p>
-<p>5.iframe(不推荐)</p>
-<h3 id="代理的处理"><a href="#代理的处理" class="headerlink" title="代理的处理"></a>代理的处理</h3><p><img src="C:\Users\25334\Desktop\MyWeb\MarkDown\image-20210503195130948.png" alt="image-20210503195130948"></p>
-<h3 id="1、jsonp跨域"><a href="#1、jsonp跨域" class="headerlink" title="1、jsonp跨域"></a>1、jsonp跨域</h3><p>JSONP（JSON with Padding：填充式JSON)，应用JSON的一种新方法，<br>JSON、JSONP的区别：<br>　1、JSON返回的是一串数据、JSONP返回的是脚本代码(包含一个函数调用)</p>
-<p>2、JSONP是非正式传输协议，它允许用户传递一个callback或者开始就定义一个回调方法，传给服务端，服务端返回数据时会将这个callback参数作为函数名来包裹住JSON数据，这样客户端就可以自定义函数来自动处理返回数据了。JSONP只支持GET请求而不支持POST等其它类型的HTTP请求。　(类似往页面添加一个script标签，通过src属性去触发对指定地址的请求,故只能是Get请求)</p>
-<h3 id="2-CORS"><a href="#2-CORS" class="headerlink" title="2.CORS"></a>2.CORS</h3><p>CORS简介</p>
-<p>浏览器默认的安全限制为同源策略，即JavaScript或Cookie只能访问同源（相同协议，相同域名，相同端口）下的内容。但由于跨域访问资源需要，出现了CORS机制，这种机制让web服务器能跨站访问控制，使跨站数据传输更安全。CORS需要阅览器和服务器同时支持，目前，主流的阅览器都支持cors。</p>
-<h4 id="简单请求"><a href="#简单请求" class="headerlink" title="简单请求"></a>简单请求</h4><p>请求方法是以下三种方法之一：HEAD、GET、POST<br>HTTP的头信息不超出以下几种字段：Accept（客户端能接收的资源类型）、Accept-Language（客户端接收的语言类型）、Content-Language（服务端发送的语言类型）、Last-Event-ID、Content-Type：只限于三个值application/x-www-form-urlencoded、multipart/form-data、text/plain<br>其他都属于非简单请求</p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/9a1c5a4558fc5e884c8ce5bd1e8f0410.png" alt="img"></p>
-<p>Access-Control-Allow-Origin 允许哪些域名的脚本访问该资源（是跨域时必须配置的，其他的可选择性配置）<br>Access-Control-Allow-Methods 响应头指定访问资源时允许的一种或多种方法<br>Access-Control-Allow-Headers 浏览器向服务器询问是否支持跨域的自定义header字段时，服务器需要适当的应答<br>Access-Control-Allow-Credentials: true  表示服务器明确许可，Cookie可以包含在请求中，一起发给服务器。<br>Access-Control-Max-Age用来指定本次预检请求的有效期，单位为秒，在此期间不用发出另一条预检请求。</p>
-<h4 id="服务端的配置"><a href="#服务端的配置" class="headerlink" title="服务端的配置"></a>服务端的配置</h4><p>交给后端</p>
-<h3 id="3-代理"><a href="#3-代理" class="headerlink" title="3.代理"></a>3.代理</h3><p>方案一、自己做一个nodejs的中间层</p>
-<p>A - 当前页面地址    <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a><br>B - nodejs中间层   <a target="_blank" rel="noopener" href="http://localhost:9090/">http://localhost:9090</a><br>C - 目标地址       <a target="_blank" rel="noopener" href="http://movie.miguvideo.com/">http://movie.miguvideo.com</a><br>D - 目标地址的某个接口地址 <a target="_blank" rel="noopener" href="http://movie.miguvideo.com/lovev/miguMovie/data/seeFilmData.jsp">http://movie.miguvideo.com/lovev/miguMovie/data/seeFilmData.jsp</a></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&quot;express&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; createProxyMiddleware &#125; = <span class="built_in">require</span>(<span class="string">&quot;http-proxy-middleware&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> cors = <span class="built_in">require</span>(<span class="string">&quot;cors&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"></span><br><span class="line"><span class="comment">//处理一下跨源</span></span><br><span class="line">app.use(cors())</span><br><span class="line"></span><br><span class="line"><span class="comment">// 目标地址 C 是: https://api.asilu.com/today/</span></span><br><span class="line"><span class="comment">// 这是我们可以访问 B 是：http://localhost:9090/today/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// A 发起请求 http://localhost:9090/migu/today/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//提供代理，处理跨源的数据</span></span><br><span class="line">app.use(<span class="string">&#x27;/migu&#x27;</span>, createProxyMiddleware(&#123;</span><br><span class="line">  <span class="comment">// 目标地址，只写主机</span></span><br><span class="line">  target: <span class="string">&#x27;https://api.asilu.com&#x27;</span>,</span><br><span class="line">  changeOrigin: <span class="literal">true</span>,</span><br><span class="line">  pathRewrite: &#123;</span><br><span class="line">    <span class="string">&#x27;^/migu&#x27;</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;))</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.send(<span class="string">&quot;hello world&quot;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">9090</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;服务器启动成功&quot;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//运行这个程序 npm run start  或者 npm start</span></span><br><span class="line"><span class="comment">//supervisor server.js</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<p>方案二、配置 Vue 脚手架的配置文件</p>
-<p>Vue 脚手架创建的项目，在本地开发时（npm run serve）时，启动的服务就是一个node实现的。<br>Vue 脚手架创建的项目，有一个配置文件叫做 vue.config.js<br>在这个配置文件中可以做很多的配置，其中就有代理的配置。</p>
-<ol>
-<li>项目根目录下创建一个 vue.config.js</li>
-<li>配置 vue.config.js 中 devServer.proxy 配置。这里的配置与方案一种的配置项是一样的</li>
-<li>重新运行项目</li>
-<li>A 与 B 是同一个主机。这里就是 <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a></li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> request <span class="keyword">from</span> <span class="string">&#x27;../utils/request&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; format &#125; <span class="keyword">from</span> <span class="string">&#x27;@/utils/apiHelp&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取轮播图的数据</span></span><br><span class="line"><span class="comment"> * https:*****</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getBanner = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> request(&#123;</span><br><span class="line">    url: <span class="string">&#x27;/api/comic_v2/getproad&#x27;</span>,</span><br><span class="line">    params: &#123;</span><br><span class="line">      apptype: <span class="number">8</span>,</span><br><span class="line">      appversion: <span class="number">1.0</span>,</span><br><span class="line">      channel: <span class="string">&#x27;web-app&#x27;</span>,</span><br><span class="line">      adgroupid: <span class="number">123</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-iframe"><a href="#5-iframe" class="headerlink" title="5.iframe"></a>5.iframe</h3><p>因为浏览器为了安全，禁止了不同域访问。因此只要调用与执行的双方是同域则可以相互访问。</p>
-<p>首先，A.html 如何调用B.html的 fIframe方法</p>
-<p>1.在A.html 创建一个 iframe</p>
-<p>2.iframe的页面放在 B.html 同域下，命名为execB.html</p>
-<p>3.execB.html 里有调用B.html fIframe方法的js调用</p>
-<p>这样A.html 就能通过 execB.html 调用 B.html 的 fIframe 方法了。</p>
-<p>同理，B.html 需要调用A.html fMain方法，需要在B.html 嵌入与A.html 同域的 execA.html </p>
-<p>execA.html 里有调用 A.html fMain 方法的js 调用</p>
-<p>这样就能实现 A.html 与 B.html 跨域相互调用。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wtyx-2018.github.io/my-blog/2021/04/28/%E6%B2%A1%E6%83%B3%E5%A5%BD/" data-id="ckoa5a9wm0002rsux2w598s8a" data-title="跨域问题" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
     <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/my-blog/2021/04/27/hello-world/" class="article-date">
@@ -249,7 +98,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://wtyx-2018.github.io/my-blog/2021/04/27/hello-world/" data-id="ckoa5a9w90000rsux2eii7wjl" data-title="关于我" class="article-share-link">Share</a>
+      <a data-url="https://wtyx-2018.github.io/my-blog/2021/04/27/hello-world/" data-id="ckoa5dyj10000w4uxec5maek8" data-title="关于我" class="article-share-link">Share</a>
       
       
       
@@ -290,14 +139,6 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/my-blog/2021/04/28/this%E6%8C%87%E5%90%91%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%BB%91%E5%AE%9A%E8%A7%84%E5%88%99/">this指向的四种绑定规则</a>
-          </li>
-        
-          <li>
-            <a href="/my-blog/2021/04/28/%E6%B2%A1%E6%83%B3%E5%A5%BD/">跨域问题</a>
-          </li>
         
           <li>
             <a href="/my-blog/2021/04/27/hello-world/">关于我</a>
