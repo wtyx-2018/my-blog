@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="关于我, web前端">
+    <meta name="keywords" content="javascript 是一门依赖宿主环境的单线程的弱脚本语言，这意味着什么？, web前端">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>关于我 | 武藤游戏の博客</title>
+    <title>javascript 是一门依赖宿主环境的单线程的弱脚本语言，这意味着什么？ | 武藤游戏の博客</title>
     <link rel="icon" type="image/png" href="/my-blog/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/my-blog/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/my-blog/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/my-blog/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">关于我</h1>
+                    <h1 class="description center-align post-title">javascript 是一门依赖宿主环境的单线程的弱脚本语言，这意味着什么？</h1>
                 </div>
             </div>
         </div>
@@ -443,7 +443,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-04-27
+                    2021-04-12
                 </div>
                 
 
@@ -464,8 +464,44 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>现在大三，希望能找到一份暑假实习，方便在秋招找到工作。<br>每两天跑一次步，每天坚持俯卧撑，身体健康能适应高强度工作<br>热爱前端开发，对前端技术有强烈的好奇心和求知欲</p>
-<h6 id="等问题出现了我再告诉大家"><a href="#等问题出现了我再告诉大家" class="headerlink" title="等问题出现了我再告诉大家"></a>等问题出现了我再告诉大家</h6>
+                <h1 id="总所周知，javascript-是一门依赖宿主环境的单线程的弱脚本语言，这意味着什么？"><a href="#总所周知，javascript-是一门依赖宿主环境的单线程的弱脚本语言，这意味着什么？" class="headerlink" title="总所周知，javascript 是一门依赖宿主环境的单线程的弱脚本语言，这意味着什么？"></a>总所周知，javascript 是一门依赖宿主环境的单线程的弱脚本语言，这意味着什么？</h1><ul>
+<li>javascript 的运行环境一般都由<code>宿主环境</code>（如浏览器、Node、Ringo 等）和<code>执行环境</code>（Javascript 引擎 V8，JavaScript Core 等）共同构成；</li>
+<li>弱类型定义语言：数据类型可以被忽略的语言。例如计算时会在不同类型之间进行隐式转换；</li>
+<li>在某一时刻内只能执行特定的一个任务，并且会阻塞其它任务执行；</li>
+</ul>
+<p>本文主要讲的就是第三点，从中引出下一个问题</p>
+<h2 id="单线程的设计原因？"><a href="#单线程的设计原因？" class="headerlink" title="单线程的设计原因？"></a>单线程的设计原因？</h2><p>Javascript 当初诞生的目的其实就是因为当年网络技术十分低效，如表单验证等个几十秒才能得到反馈的用户体验十分糟糕，为了给浏览器做些简单处理以前由服务器端负责的一些表单验证。被 Netscape 公司指派花了十天就负责设计出一门新语言的 Javascript 之父就是 Brendan Eich。尽管他并不喜欢自己设计的这作品，就有了大家都听过的一句话：</p>
+<blockquote>
+<p>“与其说我爱 Javascript，不如说我恨它。它是 C 语言和 Self 语言一夜情的产物。十八世纪英国文学家约翰逊博士说得好：’它的优秀之处并非原创，它的原创之处并不优秀。’（the part that is good is not original, and the part that is original is not good.）”</p>
+</blockquote>
+<p>作为浏览器脚本语言而诞生的 JavaScript 的主要用途是与用户互动，以及操作 DOM。这决定了它只需要是单线程就足以解决目的，否则会带来很复杂的同步问题。但是没想到的是之后的网络越发的发达，这些年来的浏览器大战为了争夺地盘，反而让 Javascript 被赋予了更多的职责跟可能性，今时今日的 Javascript 必须想方设法把自身的潜力激发出来，而单线程的弱点就被无限放大了，因为在阻塞任务的过程中不一定是因为 CPU 被占用了，而可能是因为 I/O 太慢（如 AJAX 请求，定时器任务，Dom 事件交互等并不消耗 CPU 的等待造成资源时间浪费）。</p>
+<h2 id="浏览器中-Javascript-执行线程"><a href="#浏览器中-Javascript-执行线程" class="headerlink" title="浏览器中 Javascript 执行线程"></a>浏览器中 Javascript 执行线程</h2><p>我们一直都在说 Javascript 是单线程，但浏览器是多线程的，在内核控制下互相配合以保持同步，主要的常驻线程有：</p>
+<ul>
+<li>GUI 渲染线程：负责渲染界面，解析 HTML，CSS，构建 DOM 和 Render 树布局绘制等。如果过程中遇到 JS 引擎执行会被挂起线程，GUI 更新保存在一个队列中等待 JS 引擎空闲才执行；</li>
+<li>JS 引擎线程：负责解析运行 Javascript；执行时间过程会导致页面渲染加载阻塞；</li>
+<li>事件触发线程，浏览器用以控制事件循环。当 JS 引擎执行过程中触发的事件（如点击，请求等）会将对应任务添加到事件线程中，而当对应的事件符合触发条件被触发时会把对应任务添加到处理队列的尾部等到 JS 引擎空闲时处理；</li>
+<li>定时器触发线程：因为 JS 引擎是单线程容易阻塞，所以需要有单独线程为 setTimeout 和 setInterval 计时并触发，同样是符合触发条件（记时完毕）被触发时会把对应任务添加到处理队列的尾部等到 JS 引擎空闲时处理；W3C 标准规定时间间隔低于 4ms 被算为 4ms。</li>
+<li>异步 http 请求线程：XMLHttpRequest 在连接后浏览器新开线程去请求，检测到状态变化如果有设置回调函数会产生状态变更事件，然后把对应任务添加到处理队列的尾部等到 JS 引擎空闲时处理；</li>
+</ul>
+<p>好像铺垫的有点多，往外偏了，接下来往回拉一点谈谈这些怎么运行的。</p>
+<h2 id="什么是堆（heap）和栈（stack）？"><a href="#什么是堆（heap）和栈（stack）？" class="headerlink" title="什么是堆（heap）和栈（stack）？"></a>什么是堆（heap）和栈（stack）？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function addOne(n) &#123;  var x &#x3D; n + 1;  return addTwo(x);&#125;</span><br><span class="line">function addTwo(n) &#123;  return n + 2;&#125;</span><br><span class="line">console.log(addOne(1)) &#x2F;&#x2F;4;</span><br></pre></td></tr></table></figure>
+
+<p>复制代码</p>
+<p>以这个例子做说明。当调用 addOne 时创建一个包含 addOne 入参和局部变量的帧并添加进去 stack，当调用到 addTwo 时也同样创建一个包含 addTwo 入参和局部变量的帧并添加进去在首部，执行完 addTwo 函数并返回时 addTwo 帧被移出 stack，addOne 执行完后 addOne 帧也被移除。原理：<strong>当执行方法时都会建立自己的内存栈，在这个方法内定义的入参变量都会保存在栈内存里，执行结束后该方法的内存栈也将自然销毁了。</strong></p>
+<p>一般来说，程序会划分有两种分配内存的空间 – <code>堆（heap）</code>和<code>栈（stack）</code>。</p>
+<p>因为栈只能存放下确定大小的简单数据，所以像变量（其实也就是一个记录了指向复杂结构数据的地址指向，所以变量也是保存在栈里的）和基本类型 Undefined、Null、Boolean、Number 和 String 等是按值传递的都会保存在栈里，随着方法执行完毕而被销毁。堆负责存放复杂结构的对象，数组，函数等创建成本较高并且可重用数据，即使方法执行完也不会被销毁，直到系统的垃圾回收机制核实了没有任何引用才会回收。其实这只是栈的含义之一</p>
+<p>有时候我们代码有问题导致栈堆溢出原因大概是这种情况：</p>
+<p>好了，现在再看回上图，除了 heap 和 stack 之外还有一个。。。</p>
+<h2 id="什么是-Queue（任务队列）？"><a href="#什么是-Queue（任务队列）？" class="headerlink" title="什么是 Queue（任务队列）？"></a>什么是 Queue（任务队列）？</h2><p>Javascript 里分两种队列：</p>
+<ul>
+<li>宏任务队列（macro tasks）：事件循环中可以有多个 macro tasks，每次循环只会提取一个，包括 <strong>script（全局任务）, setTimeout, setInterval, setImmediate, I/O, UI rendering</strong> 等.</li>
+<li>微任务队列（micro tasks）：事件循环中只有一个并且有优先级区别 micro tasks，每次循环会提取多次直至队列清空，包括 <strong>process.nextTick, Promise, Object.observer, MutationObserver</strong> 等.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">console.log(&#39;log start!&#39;);setTimeout(function () &#123;  console.log(&#39;setTimeout300&#39;);&#125;, 300)</span><br><span class="line">Promise.resolve().then(function () &#123;  console.log(&#39;promise resolve&#39;);&#125;).then(function () &#123;  console.log(&#39;promise resolve then&#39;);&#125;)</span><br><span class="line">new Promise(function (resolve, reject) &#123;  console.log(&#39;promise pending&#39;);  resolve();&#125;).then(function () &#123;  console.log(&#39;promise pending then&#39;);&#125;)</span><br><span class="line">setTimeout(function () &#123;  console.log(&#39;setTimeout0&#39;);  Promise.resolve().then(function () &#123;    console.log(&#39;promise3 in setTimeout&#39;);  &#125;)&#125;, 0)console.log(&#39;log end!&#39;);</span><br><span class="line">&#x2F;&#x2F; log start!&#x2F;&#x2F; promise pending&#x2F;&#x2F; log end!&#x2F;&#x2F; promise resolve&#x2F;&#x2F; promise pending then&#x2F;&#x2F; promise resolve then&#x2F;&#x2F; setTimeout0&#x2F;&#x2F; promise3 in setTimeout&#x2F;&#x2F; setTimeout300</span><br></pre></td></tr></table></figure>
+
+<p>复制代码</p>
+<p>例子过程，具体分析下面再说。第一次执行事件打印：log start!, promise pending, log end!， promise resolve，promise pending then，promise resolve then；第二次执行事件打印：setTimeout0，promise3 in setTimeout；第三次执行事件打印：setTimeout300；</p>
+
                 
             </div>
             <hr/>
@@ -491,7 +527,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wtyx-2018.github.io/my-blog/my-blog/2021/04/27/hello-world/">https://wtyx-2018.github.io/my-blog/my-blog/2021/04/27/hello-world/</a>
+                    <a href="https://wtyx-2018.github.io/my-blog/my-blog/2021/04/12/%E6%80%BB%E6%89%80%E5%91%A8%E7%9F%A5%EF%BC%8Cjavascript%20%E6%98%AF%E4%B8%80%E9%97%A8%E4%BE%9D%E8%B5%96%E5%AE%BF%E4%B8%BB%E7%8E%AF%E5%A2%83%E7%9A%84%E5%8D%95%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%BC%B1%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80%EF%BC%8C%E8%BF%99%E6%84%8F%E5%91%B3%E7%9D%80%E4%BB%80%E4%B9%88%EF%BC%9F/">https://wtyx-2018.github.io/my-blog/my-blog/2021/04/12/%E6%80%BB%E6%89%80%E5%91%A8%E7%9F%A5%EF%BC%8Cjavascript%20%E6%98%AF%E4%B8%80%E9%97%A8%E4%BE%9D%E8%B5%96%E5%AE%BF%E4%B8%BB%E7%8E%AF%E5%A2%83%E7%9A%84%E5%8D%95%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%BC%B1%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80%EF%BC%8C%E8%BF%99%E6%84%8F%E5%91%B3%E7%9D%80%E4%BB%80%E4%B9%88%EF%BC%9F/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -700,13 +736,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/my-blog/2021/04/28/this%E6%8C%87%E5%90%91%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%BB%91%E5%AE%9A%E8%A7%84%E5%88%99/">
+                <a href="/my-blog/2021/04/27/aboutme/">
                     <div class="card-image">
                         
                         
-                        <img src="/my-blog/medias/featureimages/4.jpg" class="responsive-img" alt="this指向的四种绑定规则">
+                        <img src="/my-blog/medias/featureimages/6.jpg" class="responsive-img" alt="关于我">
                         
-                        <span class="card-title">this指向的四种绑定规则</span>
+                        <span class="card-title">关于我</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -717,7 +753,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-28
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-27
                         </span>
                         <span class="publish-author">
                             
@@ -734,16 +770,16 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                Current&nbsp;<i class="far fa-dot-circle"></i>
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/my-blog/2021/04/27/hello-world/">
+                <a href="/my-blog/2021/04/05/HTTP%20%E6%98%AF%E4%BB%80%E4%B9%88/">
                     <div class="card-image">
                         
                         
-                        <img src="/my-blog/medias/featureimages/6.jpg" class="responsive-img" alt="关于我">
+                        <img src="/my-blog/medias/featureimages/7.jpg" class="responsive-img" alt="HTTP 是什么">
                         
-                        <span class="card-title">关于我</span>
+                        <span class="card-title">HTTP 是什么</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -754,7 +790,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-05
                             </span>
                         <span class="publish-author">
                             
@@ -764,7 +800,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>

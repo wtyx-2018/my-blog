@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="this指向的四种绑定规则, web前端">
+    <meta name="keywords" content="跨域问题, web前端">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>this指向的四种绑定规则 | 武藤游戏の博客</title>
+    <title>跨域问题 | 武藤游戏の博客</title>
     <link rel="icon" type="image/png" href="/my-blog/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/my-blog/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/my-blog/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/my-blog/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">this指向的四种绑定规则</h1>
+                    <h1 class="description center-align post-title">跨域问题</h1>
                 </div>
             </div>
         </div>
@@ -464,38 +464,140 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-默认绑定规则；"><a href="#1-默认绑定规则；" class="headerlink" title="1.默认绑定规则；"></a>1.默认绑定规则；</h2><p> 立即执行函数 </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">this</span>); <span class="comment">//window</span></span><br><span class="line"><span class="comment">// 函数的独立调用</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">test(); <span class="comment">//window</span></span><br></pre></td></tr></table></figure>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>浏览器的内核是指支持浏览器运行的最核心的程序，分为两个部分的，一是渲染引擎，另一个是 JS 引擎。渲染引擎在不同的浏览器中也不是都相同的。目前市面上常见的浏览器内核可以分为这四种：Trident（IE）、Gecko（火狐）、Blink（Chrome、Opera）、Webkit（Safari）。这里面大家最耳熟能详的可能就是 Webkit 内核了，Webkit 内核是当下浏览器世界真正的霸主。</p>
+<h2 id="页面加载过程"><a href="#页面加载过程" class="headerlink" title="页面加载过程"></a>页面加载过程</h2><p>在介绍浏览器渲染过程之前，我们简明扼要介绍下页面的加载过程，有助于更好理解后续渲染过程。</p>
+<p>要点如下：</p>
+<ul>
+<li>浏览器根据 DNS 服务器得到域名的 IP 地址；</li>
+<li>向这个 IP 的机器发送 HTTP 请求；</li>
+<li>服务器收到、处理并返回 HTTP 请求；</li>
+<li>浏览器得到返回内容。</li>
+</ul>
+<p>例如在浏览器输入<code>https://juejin.im/timeline</code>，然后经过 DNS 解析，<code>juejin.im</code>对应的 IP 是<code>36.248.217.149</code>（不同时间、地点对应的 IP 可能会不同）。然后浏览器向该 IP 发送 HTTP 请求。</p>
+<p>服务端接收到 HTTP 请求，然后经过计算（向不同的用户推送不同的内容），返回 HTTP 请求，返回的内容如下：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/4/1/169d47cbe03e0103?w=684&h=168&f=png&s=81486" alt="img"></p>
+<p>其实就是一堆 HMTL 格式的字符串，因为只有 HTML 格式浏览器才能正确解析，这是 W3C 标准的要求。接下来就是浏览器的渲染过程。</p>
+<h2 id="浏览器渲染过程"><a href="#浏览器渲染过程" class="headerlink" title="浏览器渲染过程"></a>浏览器渲染过程</h2><p><img src="https://user-gold-cdn.xitu.io/2018/12/27/167f057704b94f08?w=705&h=227&f=png&s=160274" alt="img"></p>
+<p>浏览器渲染过程大体分为如下三部分：</p>
+<p><strong>1）浏览器会解析三个东西：</strong></p>
+<p>一是 HTML/SVG/XHTML，HTML 字符串描述了一个页面的结构，浏览器会把 HTML 结构字符串解析转换 DOM 树形结构。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/3/31/169d470437a6c15a?w=587&h=110&f=gif&s=98237" alt="img"></p>
+<p>二是 CSS，解析 CSS 会产生 CSS 规则树，它和 DOM 结构比较像。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/3/31/169d478a0f4bd16c?w=664&h=146&f=png&s=32883" alt="img"></p>
+<p>三是 Javascript 脚本，等到 Javascript 脚本文件加载后， 通过 DOM API 和 CSSOM API 来操作 DOM Tree 和 CSS Rule Tree。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/3/31/169d4780e0a3fa44?w=579&h=197&f=gif&s=144087" alt="img"></p>
+<p><strong>2）解析完成后，浏览器引擎会通过 DOM Tree 和 CSS Rule Tree 来构造 Rendering Tree。</strong></p>
+<ul>
+<li>Rendering Tree 渲染树并不等同于 DOM 树，渲染树只会包括需要显示的节点和这些节点的样式信息。</li>
+<li>CSS 的 Rule Tree 主要是为了完成匹配并把 CSS Rule 附加上 Rendering Tree 上的每个 Element（也就是每个 Frame）。</li>
+<li>然后，计算每个 Frame 的位置，这又叫 layout 和 reflow 过程。</li>
+</ul>
+<p><strong>3）最后通过调用操作系统 Native GUI 的 API 绘制。</strong></p>
+<p>接下来我们针对这其中所经历的重要步骤详细阐述</p>
+<h2 id="构建-DOM"><a href="#构建-DOM" class="headerlink" title="构建 DOM"></a>构建 DOM</h2><p>浏览器会遵守一套步骤将 HTML 文件转换为 DOM 树。宏观上，可以分为几个步骤：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/28/167f5262f5d0aadd?w=623&h=88&f=png&s=30814" alt="img"></p>
+<p>浏览器从磁盘或网络读取 HTML 的原始字节，并根据文件的指定编码（例如 UTF-8）将它们转换成字符串。</p>
+<p>在网络中传输的内容其实都是 0 和 1 这些字节数据。当浏览器接收到这些字节数据以后，它会将这些字节数据转换为字符串，也就是我们写的代码。</p>
+<p>将字符串转换成 Token，例如：<code>&lt;html&gt;</code>、<code>&lt;body&gt;</code>等。<strong>Token 中会标识出当前 Token 是“开始标签”或是“结束标签”亦或是“文本”等信息</strong>。</p>
+<p>这时候你一定会有疑问，节点与节点之间的关系如何维护？</p>
+<p>事实上，这就是 Token 要标识“起始标签”和“结束标签”等标识的作用。例如“title”Token 的起始标签和结束标签之间的节点肯定是属于“head”的子节点。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/28/167f54a4ce149a05?w=671&h=168&f=png&s=53155" alt="img"></p>
+<p>上图给出了节点之间的关系，例如：“Hello”Token 位于“title”开始标签与“title”结束标签之间，表明“Hello”Token 是“title”Token 的子节点。同理“title”Token 是“head”Token 的子节点。</p>
+<ul>
+<li>生成节点对象并构建 DOM</li>
+</ul>
+<p>事实上，构建 DOM 的过程中，不是等所有 Token 都转换完成后再去生成节点对象，而是一边生成 Token 一边消耗 Token 来生成节点对象。换句话说，每个 Token 被生成后，会立刻消耗这个 Token 创建出节点对象。<strong>注意：带有结束标签标识的 Token 不会创建节点对象。</strong></p>
+<p>接下来我们举个例子，假设有段 HTML 文本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;&lt;head&gt;    &lt;title&gt;Web page parsing&lt;&#x2F;title&gt;&lt;&#x2F;head&gt;&lt;body&gt;    &lt;div&gt;        &lt;h1&gt;Web page parsing&lt;&#x2F;h1&gt;        &lt;p&gt;This is an example Web page.&lt;&#x2F;p&gt;    &lt;&#x2F;div&gt;&lt;&#x2F;body&gt;&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
 
+<p>复制代码</p>
+<p>上面这段 HTML 会解析成这样：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/28/167f522e4d4c5e2b?w=468&h=308&f=png&s=120917" alt="img"></p>
+<h2 id="构建-CSSOM"><a href="#构建-CSSOM" class="headerlink" title="构建 CSSOM"></a>构建 CSSOM</h2><p>DOM 会捕获页面的内容，但浏览器还需要知道页面如何展示，所以需要构建 CSSOM。</p>
+<p>构建 CSSOM 的过程与构建 DOM 的过程非常相似，当浏览器接收到一段 CSS，浏览器首先要做的是识别出 Token，然后构建节点并生成 CSSOM。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/28/167f55aabacd4bac?w=679&h=85&f=png&s=32976" alt="img"></p>
+<p>在这一过程中，浏览器会确定下每一个节点的样式到底是什么，并且这一过程其实是很消耗资源的。因为样式你可以自行设置给某个节点，也可以通过继承获得。在这一过程中，浏览器得递归 CSSOM 树，然后确定具体的元素到底是什么样式。</p>
+<p><strong>注意：CSS 匹配 HTML 元素是一个相当复杂和有性能问题的事情。所以，DOM 树要小，CSS 尽量用 id 和 class，千万不要过渡层叠下去</strong>。</p>
+<h2 id="构建渲染树"><a href="#构建渲染树" class="headerlink" title="构建渲染树"></a>构建渲染树</h2><p>当我们生成 DOM 树和 CSSOM 树以后，就需要将这两棵树组合为渲染树。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/28/167f5652521fea2f?w=689&h=327&f=png&s=125079" alt="img"></p>
+<p>在这一过程中，不是简单的将两者合并就行了。<strong>渲染树只会包括需要显示的节点和这些节点的样式信息</strong>，如果某个节点是 <code>display: none</code> 的，那么就不会在渲染树中显示。</p>
+<p>我们或许有个疑惑：<strong>浏览器如果渲染过程中遇到 JS 文件怎么处理</strong>？</p>
+<p>渲染过程中，如果遇到<code>&lt;script&gt;</code>就停止渲染，执行 JS 代码。因为浏览器有 GUI 渲染线程与 JS 引擎线程，为了防止渲染出现不可预期的结果，这两个线程是互斥的关系。JavaScript 的加载、解析与执行会阻塞 DOM 的构建，也就是说，在构建 DOM 时，HTML 解析器若遇到了 JavaScript，那么它会暂停构建 DOM，将控制权移交给 JavaScript 引擎，等 JavaScript 引擎运行完毕，浏览器再从中断的地方恢复 DOM 构建。</p>
+<p>也就是说，如果你想首屏渲染的越快，就越不应该在首屏就加载 JS 文件，这也是都建议将 script 标签放在 body 标签底部的原因。当然在当下，并不是说 script 标签必须放在底部，因为你可以给 script 标签添加 defer 或者 async 属性（下文会介绍这两者的区别）。</p>
+<p><strong>JS 文件不只是阻塞 DOM 的构建，它会导致 CSSOM 也阻塞 DOM 的构建</strong>。</p>
+<p>原本 DOM 和 CSSOM 的构建是互不影响，井水不犯河水，但是一旦引入了 JavaScript，CSSOM 也开始阻塞 DOM 的构建，只有 CSSOM 构建完毕后，DOM 再恢复 DOM 构建。</p>
+<p>这是什么情况？</p>
+<p>这是因为 JavaScript 不只是可以改 DOM，它还可以更改样式，也就是它可以更改 CSSOM。因为不完整的 CSSOM 是无法使用的，如果 JavaScript 想访问 CSSOM 并更改它，那么在执行 JavaScript 时，必须要能拿到完整的 CSSOM。所以就导致了一个现象，如果浏览器尚未完成 CSSOM 的下载和构建，而我们却想在此时运行脚本，那么浏览器将延迟脚本执行和 DOM 构建，直至其完成 CSSOM 的下载和构建。也就是说，<strong>在这种情况下，浏览器会先下载和构建 CSSOM，然后再执行 JavaScript，最后在继续构建 DOM</strong>。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/4/2/169debdd09eeccaa?w=689&h=209&f=png&s=51312" alt="img"></p>
+<h2 id="布局与绘制"><a href="#布局与绘制" class="headerlink" title="布局与绘制"></a>布局与绘制</h2><p>当浏览器生成渲染树以后，就会根据渲染树来进行布局（也可以叫做回流）。这一阶段浏览器要做的事情是要弄清楚各个节点在页面中的确切位置和大小。通常这一行为也被称为“自动重排”。</p>
+<p>布局流程的输出是一个“盒模型”，它会精确地捕获每个元素在视口内的确切位置和尺寸，所有相对测量值都将转换为屏幕上的绝对像素。</p>
+<p>布局完成后，浏览器会立即发出“Paint Setup”和“Paint”事件，将渲染树转换成屏幕上的像素。</p>
+<p>以上我们详细介绍了浏览器工作流程中的重要步骤，接下来我们讨论几个相关的问题：</p>
+<h2 id="几点补充说明"><a href="#几点补充说明" class="headerlink" title="几点补充说明"></a>几点补充说明</h2><h3 id="1-async-和-defer-的作用是什么？有什么区别"><a href="#1-async-和-defer-的作用是什么？有什么区别" class="headerlink" title="1.async 和 defer 的作用是什么？有什么区别?"></a>1.async 和 defer 的作用是什么？有什么区别?</h3><p>接下来我们对比下 defer 和 async 属性的区别：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/16/1640656e70765ac7?w=689&h=112&f=jpeg&s=16895" alt="img"></p>
+<p>其中蓝色线代表 JavaScript 加载；红色线代表 JavaScript 执行；绿色线代表 HTML 解析。</p>
+<p><strong>1）情况 1</strong><code>**&lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;**</code></p>
+<p>没有 defer 或 async，浏览器会立即加载并执行指定的脚本，也就是说不等待后续载入的文档元素，读到就加载并执行。</p>
+<p><strong>2）情况 2</strong><code>**&lt;script async src=&quot;script.js&quot;&gt;&lt;/script&gt;**</code>  (<strong>异步下载</strong>)</p>
+<p>async 属性表示异步执行引入的 JavaScript，与 defer 的区别在于，如果已经加载好，就会开始执行——无论此刻是 HTML 解析阶段还是 DOMContentLoaded 触发之后。需要注意的是，这种方式加载的 JavaScript 依然会阻塞 load 事件。换句话说，async-script 可能在 DOMContentLoaded 触发之前或之后执行，但一定在 load 触发之前执行。</p>
+<p><strong>3）情况 3</strong> <code>**&lt;script defer src=&quot;script.js&quot;&gt;&lt;/script&gt;**</code>(<strong>延迟执行</strong>)</p>
+<p>defer 属性表示延迟执行引入的 JavaScript，即这段 JavaScript 加载时 HTML 并未停止解析，这两个过程是并行的。整个 document 解析完毕且 defer-script 也加载完成之后（这两件事情的顺序无关），会执行所有由 defer-script 加载的 JavaScript 代码，然后触发 DOMContentLoaded 事件。</p>
+<p>defer 与相比普通 script，有两点区别：<strong>载入 JavaScript 文件时不阻塞 HTML 的解析，执行阶段被放到 HTML 标签解析完成之后。</strong></p>
+<p><strong>在加载多个 JS 脚本的时候，async 是无顺序的加载，而 defer 是有顺序的加载。</strong></p>
+<h3 id="2-为什么操作-DOM-慢？"><a href="#2-为什么操作-DOM-慢？" class="headerlink" title="2.为什么操作 DOM 慢？"></a>2.为什么操作 DOM 慢？</h3><p>把 DOM 和 JavaScript 各自想象成一个岛屿，它们之间用收费桥梁连接。——《高性能 JavaScript》</p>
+<p>JS 是很快的，在 JS 中修改 DOM 对象也是很快的。在 JS 的世界里，一切是简单的、迅速的。但 DOM 操作并非 JS 一个人的独舞，而是两个模块之间的协作。</p>
+<p>因为 DOM 是属于渲染引擎中的东西，而 JS 又是 JS 引擎中的东西。当我们用 JS 去操作 DOM 时，本质上是 JS 引擎和渲染引擎之间进行了“跨界交流”。这个“跨界交流”的实现并不简单，它依赖了桥接接口作为“桥梁”（如下图）。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/4/3/169e3dc0c4a438fd?w=578&h=188&f=png&s=41263" alt="img"></p>
+<p>过“桥”要收费——这个开销本身就是不可忽略的。我们每操作一次 DOM（不管是为了修改还是仅仅为了访问其值），都要过一次“桥”。过“桥”的次数一多，就会产生比较明显的性能问题。因此“减少 DOM 操作”的建议，并非空穴来风。</p>
+<h3 id="3-你真的了解回流和重绘吗？"><a href="#3-你真的了解回流和重绘吗？" class="headerlink" title="3.你真的了解回流和重绘吗？"></a>3.你真的了解回流和重绘吗？</h3><p>渲染的流程基本上是这样（如下图黄色的四个步骤）：</p>
+<p>1.计算 CSS 样式</p>
+<p>2.构建 Render Tree</p>
+<p>3.Layout – 定位坐标和大小</p>
+<p>4.正式开画</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/28/167f068e4de6c7ce?w=713&h=195&f=png&s=143812" alt="img"></p>
+<p>注意：上图流程中有很多连接线，这表示了 Javascript 动态修改了 DOM 属性或是 CSS 属性会导致重新 Layout，但有些改变不会重新 Layout，就是上图中那些指到天上的箭头，比如修改后的 CSS rule 没有被匹配到元素。</p>
+<p>这里重要要说两个概念，一个是 Reflow，另一个是 Repaint</p>
+<p>重绘：当我们对 DOM 的修改导致了样式的变化、却并未影响其几何属性（比如修改了颜色或背景色）时，浏览器不需重新计算元素的几何属性、直接为该元素绘制新的样式（跳过了上图所示的回流环节）。</p>
+<p>回流：当我们对 DOM 的修改引发了 DOM 几何尺寸的变化（比如修改元素的宽、高或隐藏元素等）时，浏览器需要重新计算元素的几何属性（其他元素的几何属性和位置也会因此受到影响），然后再将计算的结果绘制出来，这个过程就是回流（也叫重排）。</p>
+<p>我们知道，当网页生成的时候，至少会渲染一次。在用户访问的过程中，还会不断重新渲染。重新渲染会重复回流+重绘或者只有重绘。</p>
+<p><strong>回流必定会发生重绘，重绘不一定会引发回流</strong>。重绘和回流会在我们设置节点样式时频繁出现，同时也会很大程度上影响性能。回流所需的成本比重绘高的多，改变父节点里的子节点很可能会导致父节点的一系列回流。</p>
+<h3 id="1）常见引起回流属性和方法"><a href="#1）常见引起回流属性和方法" class="headerlink" title="1）常见引起回流属性和方法"></a>1）常见引起回流属性和方法</h3><p>任何会改变元素几何信息(元素的位置和尺寸大小)的操作，都会触发回流，</p>
+<ul>
+<li>添加或者删除可见的 DOM 元素；</li>
+<li>元素尺寸改变——边距、填充、边框、宽度和高度；</li>
+<li>内容变化，比如用户在 input 框中输入文字；</li>
+<li>浏览器窗口尺寸改变——resize 事件发生时；</li>
+<li>计算 offsetWidth 和 offsetHeight 属性；</li>
+<li>设置 style 属性的值。</li>
+</ul>
+<h3 id="2）常见引起重绘属性和方法"><a href="#2）常见引起重绘属性和方法" class="headerlink" title="2）常见引起重绘属性和方法"></a>2）常见引起重绘属性和方法</h3><p><img src="https://user-gold-cdn.xitu.io/2019/1/1/16809d8e6482b813?w=554&h=235&f=png&s=12075" alt="img"></p>
+<h3 id="3）如何减少回流、重绘"><a href="#3）如何减少回流、重绘" class="headerlink" title="3）如何减少回流、重绘"></a>3）如何减少回流、重绘</h3><ul>
+<li>使用 transform 替代 top；</li>
+<li>使用 visibility 替换 display: none ，因为前者只会引起重绘，后者会引发回流（改变了布局）；</li>
+<li>不要把节点的属性值放在一个循环里当成循环里的变量。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for(let i &#x3D; 0; i &lt; 1000; i++) &#123;    &#x2F;&#x2F; 获取 offsetTop 会导致回流，因为需要去获取正确的值    console.log(document.querySelector(&#39;.test&#39;).style.offsetTop)&#125;</span><br></pre></td></tr></table></figure>
 
-
-<h2 id="2-隐式绑定规则（隐式丢失和参数赋值）；"><a href="#2-隐式绑定规则（隐式丢失和参数赋值）；" class="headerlink" title="2.隐式绑定规则（隐式丢失和参数赋值）；"></a>2.隐式绑定规则（隐式丢失和参数赋值）；</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">var</span> obj=&#123;</span><br><span class="line">          a:<span class="number">2</span>,</span><br><span class="line">          foo:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">             <span class="built_in">console</span>.log(<span class="built_in">this</span>); <span class="comment">//指向OBJ 2.隐式绑定规则</span></span><br><span class="line">             <span class="comment">//对象.语法调用</span></span><br><span class="line">             <span class="comment">//谁调用就指向谁</span></span><br><span class="line">             <span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                 <span class="built_in">console</span>.log(<span class="built_in">this</span>);<span class="comment">//</span></span><br><span class="line">             &#125;</span><br><span class="line">             test1();<span class="comment">//独立调用就指向window                      		闭包：return test1（）//window</span></span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      obj.foo();<span class="comment">//&#123;a:2, foo: f()&#125;</span></span><br></pre></td></tr></table></figure>
-
-<pre><code> 预编译的时候this就有了
-</code></pre>
-<p>​    函数执行时会产生自己的指向 函数不执行this没有任何意义</p>
-<p>​    每个this都代表一个函数执行</p>
-<p>​    当函数执行的时候，导致函数被定义，并抛出，就会产生闭包</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = <span class="number">0</span>;</span><br><span class="line">       <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">           <span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">       &#125; </span><br><span class="line">       <span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">           a: <span class="number">2</span>,</span><br><span class="line">           foo: foo</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">// obj1.foo();</span></span><br><span class="line">       <span class="comment">// 隐式丢失 可理解为独立调用</span></span><br><span class="line">       <span class="keyword">var</span> bar = obj1.foo; <span class="comment">//var bar = foo; </span></span><br><span class="line">       bar();</span><br><span class="line">       foo(); <span class="comment">//ECMA函数预编译 </span></span><br><span class="line">       <span class="comment">// 参数赋值的情况</span></span><br><span class="line">       <span class="function"><span class="keyword">function</span> <span class="title">bar1</span>(<span class="params">fn</span>)</span>&#123;<span class="comment">// 父函数是有能力决定子函数this指向的</span></span><br><span class="line">           fn(); <span class="comment">///独立调用  fn.call(obj)//指向obj fn(obj)</span></span><br><span class="line">       &#125;  </span><br><span class="line">       bar1(obj1.foo) <span class="comment">///独立调用</span></span><br><span class="line">       <span class="comment">// 预编译的过程中，实参被赋值为形参，（值的拷贝过程，浅拷贝）</span></span><br></pre></td></tr></table></figure>
-<h3 id="api-接口中指明的；"><a href="#api-接口中指明的；" class="headerlink" title="api 接口中指明的；"></a>api 接口中指明的；</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item,index,arr</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>); <span class="comment">//window</span></span><br><span class="line">&#125;,<span class="built_in">this</span>);</span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>);<span class="comment">//window</span></span><br><span class="line">    <span class="keyword">return</span> a-b;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">setInterval</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>);<span class="comment">//window</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="3-显式绑定规则；"><a href="#3-显式绑定规则；" class="headerlink" title="3.显式绑定规则；"></a>3.显式绑定规则；</h2><h4 id="显式绑定-：call-apply-bind"><a href="#显式绑定-：call-apply-bind" class="headerlink" title="显式绑定 ：call apply bind"></a>显式绑定 ：call apply bind</h4><p>采用call()和apply()，通过传入一个对象（若为基本类型，会被封装函数转为对象—装箱），将this绑定到该对象。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a,b,c,d,e</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">2</span>,</span><br><span class="line">    foo: foo</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> bar = obj.foo;</span><br><span class="line"></span><br><span class="line">bar.call(obj)</span><br><span class="line">bar.apply(obj)<span class="comment">//obj  apply传参是数组</span></span><br><span class="line">bar.bind(obj)<span class="comment">//bar.bind(obj)(参数)返回一个函数，本身并不会执行</span></span><br><span class="line">bar.call(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)<span class="comment">//Number&#123;1&#125;  通过包装的方式 显示相应的包装类 undefined null 没有包装类</span></span><br><span class="line">bar.call(<span class="literal">undefined</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)<span class="comment">//此时会采用默认的this window</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="4-new-绑定规则"><a href="#4-new-绑定规则" class="headerlink" title="4.new 绑定规则"></a>4.new 绑定规则</h2><p>任何函数都可能被用作构造函数，当函数被new操作符“构造调用”时，会执行下面操作：</p>
-<p>创建一个新对象（若该函数不是JS内置的，则创建一个新的Object对象）；<br>将this绑定到这个对象；<br>执行构造函数中的代码（为这个新对象添加属性）；<br>若函数没有返回其他对象，则自动返回这个新对象；若函数有return返回的是非对象，则还是自动返回这个新对象，即覆盖那个非对象。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.a = a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bar = <span class="keyword">new</span> foo( <span class="number">2</span> );</span><br><span class="line"><span class="built_in">console</span>.log( bar.a ); <span class="comment">// 2</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h1><p>箭头函数：不使用这四个this规则，根据词法作用域来决定this。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 返回一个箭头函数</span></span><br><span class="line">    <span class="keyword">return</span> (a) =&amp;gt; &#123;</span><br><span class="line">        <span class="comment">// `this` here is lexically adopted from `foo()`</span></span><br><span class="line">        <span class="built_in">console</span>.log( <span class="built_in">this</span>.a );</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">    a: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">    a: <span class="number">3</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// foo()不是箭头函数，他的this被绑定到obj1</span></span><br><span class="line"><span class="keyword">var</span> bar = foo.call( obj1 ); <span class="comment">// foo.call( obj1 )返回箭头函数，所以bar为箭头函数</span></span><br><span class="line">bar.call( obj2 ); <span class="comment">// 2! 箭头函数的this无法被修改，new也不行</span></span><br><span class="line"><span class="comment">//如下为和箭头函数一样的模式：</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> self = <span class="built_in">this</span>; <span class="comment">// lexical capture of `this`</span></span><br><span class="line">    <span class="built_in">setTimeout</span>( <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log( self.a );</span><br><span class="line">    &#125;, <span class="number">100</span> );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">foo.call( obj ); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="优先级问题"><a href="#优先级问题" class="headerlink" title="优先级问题"></a>优先级问题</h1><p>4&gt;3&gt;2&gt;1</p>
+<p>复制代码</p>
+<ul>
+<li>不要使用 table 布局，可能很小的一个小改动会造成整个 table 的重新布局；</li>
+<li>动画实现的速度的选择，动画速度越快，回流次数越多，也可以选择使用 requestAnimationFrame；</li>
+<li>CSS 选择符从右往左匹配查找，避免节点层级过多；</li>
+<li>将频繁重绘或者回流的节点设置为图层，图层能够阻止该节点的渲染行为影响别的节点。比如对于 video 标签来说，浏览器会自动将该节点变为图层。</li>
+</ul>
+<h2 id="性能优化策略"><a href="#性能优化策略" class="headerlink" title="性能优化策略"></a>性能优化策略</h2><p>基于上面介绍的浏览器渲染原理，DOM 和 CSSOM 结构构建顺序，初始化可以对页面渲染做些优化，提升页面性能。</p>
+<ul>
+<li>JS 优化： <code>&lt;script&gt;</code> 标签加上 defer 属性 和 async 属性 用于在不阻塞页面文档解析的前提下，控制脚本的下载和执行。</li>
+<li>defer 属性： 用于开启新的线程下载脚本文件，并使脚本在文档解析完成后执行。</li>
+<li>async 属性： HTML5 新增属性，用于异步下载脚本文件，下载完毕立即解释执行代码。</li>
+<li>CSS 优化： <code>&lt;link&gt;</code> 标签的 rel 属性 中的属性值设置为 preload 能够让你在你的 HTML 页面中可以指明哪些资源是在页面加载完成后即刻需要的，最优的配置加载顺序，提高渲染性能。</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>综上所述，我们得出这样的结论：</p>
+<ul>
+<li>浏览器工作流程：构建 DOM -&gt; 构建 CSSOM -&gt; 构建渲染树 -&gt; 布局 -&gt; 绘制。</li>
+<li>CSSOM 会阻塞渲染，只有当 CSSOM 构建完毕后才会进入下一个阶段构建渲染树。</li>
+<li>通常情况下 DOM 和 CSSOM 是并行构建的，但是当浏览器遇到一个不带 defer 或 async 属性的 script 标签时，DOM 构建将暂停，如果此时又恰巧浏览器尚未完成 CSSOM 的下载和构建，由于 JavaScript 可以修改 CSSOM，所以需要等 CSSOM 构建完毕后再执行 JS，最后才重新 DOM 构建。</li>
+</ul>
 
                 
             </div>
@@ -522,7 +624,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wtyx-2018.github.io/my-blog/my-blog/2021/04/28/this%E6%8C%87%E5%90%91%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%BB%91%E5%AE%9A%E8%A7%84%E5%88%99/">https://wtyx-2018.github.io/my-blog/my-blog/2021/04/28/this%E6%8C%87%E5%90%91%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%BB%91%E5%AE%9A%E8%A7%84%E5%88%99/</a>
+                    <a href="https://wtyx-2018.github.io/my-blog/my-blog/2021/04/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6/">https://wtyx-2018.github.io/my-blog/my-blog/2021/04/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -731,13 +833,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/my-blog/2021/05/05/New/">
+                <a href="/my-blog/2021/04/28/this%E6%8C%87%E5%90%91%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%BB%91%E5%AE%9A%E8%A7%84%E5%88%99/">
                     <div class="card-image">
                         
                         
-                        <img src="/my-blog/medias/featureimages/9.jpg" class="responsive-img" alt="跨域问题">
+                        <img src="/my-blog/medias/featureimages/4.jpg" class="responsive-img" alt="this指向的四种绑定规则">
                         
-                        <span class="card-title">跨域问题</span>
+                        <span class="card-title">this指向的四种绑定规则</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -748,7 +850,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-05
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-28
                         </span>
                         <span class="publish-author">
                             
@@ -768,13 +870,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/my-blog/2021/04/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6/">
+                <a href="/my-blog/2021/04/27/aboutme/">
                     <div class="card-image">
                         
                         
-                        <img src="/my-blog/medias/featureimages/9.jpg" class="responsive-img" alt="跨域问题">
+                        <img src="/my-blog/medias/featureimages/6.jpg" class="responsive-img" alt="关于我">
                         
-                        <span class="card-title">跨域问题</span>
+                        <span class="card-title">关于我</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -785,7 +887,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-27
                             </span>
                         <span class="publish-author">
                             
