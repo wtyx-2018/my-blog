@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="寻找两个正序数组的中位数 leetcode 困难难度, web前端">
+    <meta name="keywords" content="回文数, web前端">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>寻找两个正序数组的中位数 leetcode 困难难度 | 武藤游戏の博客</title>
+    <title>回文数 | 武藤游戏の博客</title>
     <link rel="icon" type="image/png" href="/my-blog/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/my-blog/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/my-blog/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/my-blog/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">寻找两个正序数组的中位数 leetcode 困难难度</h1>
+                    <h1 class="description center-align post-title">回文数</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/my-blog/tags/JavaScript/">
-                                <span class="chip bg-color">JavaScript</span>
+                            <a href="/my-blog/tags/algorithm/">
+                                <span class="chip bg-color">algorithm</span>
                             </a>
                         
                     </div>
@@ -447,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-05-06
+                    2021-05-14
                 </div>
                 
 
@@ -468,39 +468,38 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="寻找两个正序数组的中位数"><a href="#寻找两个正序数组的中位数" class="headerlink" title=" 寻找两个正序数组的中位数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays/"> 寻找两个正序数组的中位数</a></h4><h4 id="难度-困难"><a href="#难度-困难" class="headerlink" title="难度 困难"></a>难度 困难</h4><p>示例 1：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 &#x3D; [1,3], nums2 &#x3D; [2]</span><br><span class="line">输出：2.00000</span><br></pre></td></tr></table></figure>
+                <h4 id="9-回文数"><a href="#9-回文数" class="headerlink" title="9. 回文数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/palindrome-number/">9. 回文数</a></h4><p>难度简单1503收藏分享切换为英文接收动态反馈</p>
+<p>给你一个整数 <code>x</code> ，如果 <code>x</code> 是一个回文整数，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
+<p>回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。例如，<code>121</code> 是回文，而 <code>123</code> 不是。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：x &#x3D; 121</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
 
-<p>解释：合并数组 = [1,2,3] ，中位数 2</p>
-<p>示例 2：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 &#x3D; [1,2], nums2 &#x3D; [3,4]</span><br><span class="line">输出：2.50000</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：x &#x3D; -121</span><br><span class="line">输出：false</span><br><span class="line">解释：从左向右读, 为 -121 。 从右向左读, 为 121- 。因此它不是一个回文数。</span><br></pre></td></tr></table></figure>
 
-<p>解释：合并数组 = [1,2,3,4] ，中位数 (2 + 3) / 2 = 2.5</p>
-<p>示例 3：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 &#x3D; [0,0], nums2 &#x3D; [0,0]</span><br><span class="line">输出：0.00000</span><br></pre></td></tr></table></figure>
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：x &#x3D; 10</span><br><span class="line">输出：false</span><br><span class="line">解释：从右向左读, 为 01 。因此它不是一个回文数。</span><br></pre></td></tr></table></figure>
 
-<p>示例 4：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 &#x3D; [], nums2 &#x3D; [1]</span><br><span class="line">输出：1.00000</span><br></pre></td></tr></table></figure>
+<p><strong>示例 4：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：x &#x3D; -101</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
 
-<p>示例 5：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 &#x3D; [2], nums2 &#x3D; []</span><br><span class="line">输出：2.00000</span><br></pre></td></tr></table></figure>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>执行用时 124ms 在JavaScript中击败了96.64%的用户</p>
-<p>内存消耗 43.5MB ，击败了54.96%的用户</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> findMedianSortedArrays = <span class="function"><span class="keyword">function</span>(<span class="params">nums1, nums2</span>) </span>&#123;</span><br><span class="line">     <span class="keyword">var</span> num = nums2.concat(nums1);</span><br><span class="line">            <span class="keyword">var</span> g = <span class="number">0</span>;</span><br><span class="line">            num.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>)</span>&#123;<span class="keyword">return</span> a - b&#125;);</span><br><span class="line">            <span class="keyword">if</span> (num.length % <span class="number">2</span> === <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">var</span> a = (num.length / <span class="number">2</span>) - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">var</span> b = (num.length / <span class="number">2</span>);</span><br><span class="line">                g= (num[a] + num[b]) / <span class="number">2</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">var</span> c = num.length / <span class="number">2</span>;</span><br><span class="line">                g=num[c - <span class="number">0.5</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> g;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><p><code>-231 &lt;= x &lt;= 231 - 1</code></p>
+<p>最开始的做法。只能击败5%的用户，这样做确实很蠢，因为字符串用<code>==</code> 就能和数字比较。</p>
+<p>:disappointed_relieved:</p>
+<p>不过还是应用到了 JavaScript是不能用==或===操作符直接比较两个数组是否相等的。</p>
+<p>还有数组不可以直接用<code>=</code>赋值，这是浅拷贝</p>
+<p>应该用<code>Array.slice();</code></p>
+<p><code>array.slice()</code>函数会筛选原数组的一个子数组，创建一个新的数组接受结果后返回</p>
+<p>或者用<code>array.concat()</code></p>
+<p><code>array.concat()</code>函数会连接两个数组，并创建一个新数组接受结果进行返回</p>
+</li>
+</ul>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> isPalindrome = <span class="function"><span class="keyword">function</span> (<span class="params">num</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> arr = [];</span><br><span class="line">    <span class="keyword">var</span> ruoma = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">var</span> count = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (num &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        num = -num;</span><br><span class="line">        arr.push(<span class="string">&#x27;-&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> temp = num</span><br><span class="line">    <span class="keyword">while</span> (temp &gt;= <span class="number">10</span>) &#123;</span><br><span class="line">        temp = temp / <span class="number">10</span></span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = count - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr[<span class="number">0</span>] == <span class="string">&#x27;-&#x27;</span>) &#123;</span><br><span class="line">            arr[i + <span class="number">1</span>] = ~~num % <span class="number">10</span>;</span><br><span class="line">            num = ~~num / <span class="number">10</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            arr[i] = ~~num % <span class="number">10</span>;</span><br><span class="line">            num = ~~num / <span class="number">10</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// console.log(arr.join(&#x27;&#x27;));</span></span><br><span class="line">    <span class="comment">//const rearr = arr.slice().reverse()</span></span><br><span class="line">   <span class="comment">// console.log(rearr.toString());</span></span><br><span class="line">    <span class="comment">//console.log(arr.toString());</span></span><br><span class="line">    <span class="keyword">if</span> (rearr.toString() === arr.toString()) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>首先合并数组使用 数组的<code>concat</code>方法</p>
-<p>然后给合并后的数组排序</p>
-<p><strong>这里要注意<code> sort</code>排序 按照<em>字符串</em>顺序对值进行排序</strong>，所以当数组为[-2,-1,3]时，其排序后顺序[-1,-2,3]反而错了；</p>
-<p>我们通过一个<em>比值函数</em>来修正此问题：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> points = [<span class="number">40</span>, <span class="number">100</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">25</span>, <span class="number">10</span>];</span><br><span class="line">points.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>)</span>&#123;<span class="keyword">return</span> a - b&#125;); <span class="comment">//升序</span></span><br><span class="line"><span class="comment">//points.sort(function(a, b)&#123;return b - a&#125;); //降序</span></span><br></pre></td></tr></table></figure>
-
-<p>然后对于排序后的数组找中位数就可以了。</p>
-<p>这里可能主要考察排序算法，这里用<code>sort</code>有作弊之嫌了</p>
-<p>下边是正儿八经用排序算法写的暴力求解：</p>
-<p>作者：fe-lucifer<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays/solution/er-fen-fa-duo-yu-yan-javajs4-xun-zhao-liang-ge-zhe/">https://leetcode-cn.com/problems/median-of-two-sorted-arrays/solution/er-fen-fa-duo-yu-yan-javajs4-xun-zhao-liang-ge-zhe/</a><br>来源：力扣（LeetCode）</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> findMedianSortedArrays = <span class="function"><span class="keyword">function</span>(<span class="params">nums1, nums2</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 归并排序</span></span><br><span class="line">  <span class="keyword">const</span> merged = []</span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> j = <span class="number">0</span></span><br><span class="line">  <span class="keyword">while</span>(i &lt; nums1.length &amp;&amp; j &lt; nums2.length) &#123;</span><br><span class="line">    <span class="keyword">if</span> (nums1[i] &lt; nums2[j]) &#123;</span><br><span class="line">      merged.push(nums1[i++])</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      merged.push(nums2[j++])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span>(i &lt; nums1.length) &#123;</span><br><span class="line">    merged.push(nums1[i++])</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span>(j &lt; nums2.length) &#123;</span><br><span class="line">    merged.push(nums2[j++])</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> &#123; length &#125; = merged</span><br><span class="line">  <span class="keyword">return</span> length % <span class="number">2</span> === <span class="number">1</span></span><br><span class="line">    ? merged[<span class="built_in">Math</span>.floor(length / <span class="number">2</span>)]</span><br><span class="line">    : (merged[length / <span class="number">2</span>] + merged[length / <span class="number">2</span> - <span class="number">1</span>]) / <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
+<p>一行代码的做法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> isPalindrome = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;  </span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Number</span>(<span class="string">`<span class="subst">$&#123;<span class="built_in">Math</span>.abs(x)&#125;</span>`</span>.split(<span class="string">&#x27;&#x27;</span>).reverse().join(<span class="string">&#x27;&#x27;</span>))==x</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
                 
             </div>
@@ -527,7 +526,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wtyx-2018.github.io/my-blog/my-blog/2021/05/06/%E9%A2%98%E8%A7%A3/">https://wtyx-2018.github.io/my-blog/my-blog/2021/05/06/%E9%A2%98%E8%A7%A3/</a>
+                    <a href="https://wtyx-2018.github.io/my-blog/my-blog/2021/05/14/huiwenshu/">https://wtyx-2018.github.io/my-blog/my-blog/2021/05/14/huiwenshu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -565,8 +564,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/my-blog/tags/JavaScript/">
-                                    <span class="chip bg-color">JavaScript</span>
+                                <a href="/my-blog/tags/algorithm/">
+                                    <span class="chip bg-color">algorithm</span>
                                 </a>
                             
                         </div>
@@ -740,13 +739,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/my-blog/2021/05/07/7/">
+                <a href="/my-blog/2021/05/15/%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97/">
                     <div class="card-image">
                         
                         
-                        <img src="/my-blog/medias/featureimages/0.jpg" class="responsive-img" alt="leetcode  整数反转">
+                        <img src="/my-blog/medias/featureimages/20.jpg" class="responsive-img" alt="整数转罗马数字">
                         
-                        <span class="card-title">leetcode  整数反转</span>
+                        <span class="card-title">整数转罗马数字</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -757,7 +756,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-07
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-15
                         </span>
                         <span class="publish-author">
                             
@@ -785,13 +784,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/my-blog/2021/05/05/New/">
+                <a href="/my-blog/2021/05/07/7/">
                     <div class="card-image">
                         
                         
-                        <img src="/my-blog/medias/featureimages/9.jpg" class="responsive-img" alt="跨域问题">
+                        <img src="/my-blog/medias/featureimages/0.jpg" class="responsive-img" alt="leetcode  整数反转">
                         
-                        <span class="card-title">跨域问题</span>
+                        <span class="card-title">leetcode  整数反转</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -802,7 +801,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-07
                             </span>
                         <span class="publish-author">
                             
@@ -815,8 +814,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/my-blog/tags/Cross-domain-problems/">
-                        <span class="chip bg-color">Cross domain problems</span>
+                    <a href="/my-blog/tags/algorithm/">
+                        <span class="chip bg-color">algorithm</span>
                     </a>
                     
                 </div>

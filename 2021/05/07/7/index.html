@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="寻找两个正序数组的中位数 leetcode 困难难度, web前端">
+    <meta name="keywords" content="leetcode  整数反转, web前端">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>寻找两个正序数组的中位数 leetcode 困难难度 | 武藤游戏の博客</title>
+    <title>leetcode  整数反转 | 武藤游戏の博客</title>
     <link rel="icon" type="image/png" href="/my-blog/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/my-blog/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/my-blog/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/my-blog/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">寻找两个正序数组的中位数 leetcode 困难难度</h1>
+                    <h1 class="description center-align post-title">leetcode  整数反转</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/my-blog/tags/JavaScript/">
-                                <span class="chip bg-color">JavaScript</span>
+                            <a href="/my-blog/tags/algorithm/">
+                                <span class="chip bg-color">algorithm</span>
                             </a>
                         
                     </div>
@@ -447,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-05-06
+                    2021-05-07
                 </div>
                 
 
@@ -468,39 +468,31 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="寻找两个正序数组的中位数"><a href="#寻找两个正序数组的中位数" class="headerlink" title=" 寻找两个正序数组的中位数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays/"> 寻找两个正序数组的中位数</a></h4><h4 id="难度-困难"><a href="#难度-困难" class="headerlink" title="难度 困难"></a>难度 困难</h4><p>示例 1：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 &#x3D; [1,3], nums2 &#x3D; [2]</span><br><span class="line">输出：2.00000</span><br></pre></td></tr></table></figure>
+                <h4 id="7-整数反转"><a href="#7-整数反转" class="headerlink" title="7. 整数反转"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-integer/">7. 整数反转</a></h4><p>难度简单</p>
+<p>给你一个 32 位的有符号整数 <code>x</code> ，返回将 <code>x</code> 中的数字部分反转后的结果。</p>
+<p>如果反转后整数超过 32 位的有符号整数的范围 <code>[−231, 231 − 1]</code> ，就返回 0。</p>
+<p><strong>假设环境不允许存储 64 位整数（有符号或无符号）。</strong></p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：x &#x3D; 123</span><br><span class="line">输出：321</span><br></pre></td></tr></table></figure>
 
-<p>解释：合并数组 = [1,2,3] ，中位数 2</p>
-<p>示例 2：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 &#x3D; [1,2], nums2 &#x3D; [3,4]</span><br><span class="line">输出：2.50000</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：x &#x3D; -123</span><br><span class="line">输出：-321</span><br></pre></td></tr></table></figure>
 
-<p>解释：合并数组 = [1,2,3,4] ，中位数 (2 + 3) / 2 = 2.5</p>
-<p>示例 3：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 &#x3D; [0,0], nums2 &#x3D; [0,0]</span><br><span class="line">输出：0.00000</span><br></pre></td></tr></table></figure>
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：x &#x3D; 120</span><br><span class="line">输出：21</span><br></pre></td></tr></table></figure>
 
-<p>示例 4：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 &#x3D; [], nums2 &#x3D; [1]</span><br><span class="line">输出：1.00000</span><br></pre></td></tr></table></figure>
-
-<p>示例 5：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 &#x3D; [2], nums2 &#x3D; []</span><br><span class="line">输出：2.00000</span><br></pre></td></tr></table></figure>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>执行用时 124ms 在JavaScript中击败了96.64%的用户</p>
-<p>内存消耗 43.5MB ，击败了54.96%的用户</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> findMedianSortedArrays = <span class="function"><span class="keyword">function</span>(<span class="params">nums1, nums2</span>) </span>&#123;</span><br><span class="line">     <span class="keyword">var</span> num = nums2.concat(nums1);</span><br><span class="line">            <span class="keyword">var</span> g = <span class="number">0</span>;</span><br><span class="line">            num.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>)</span>&#123;<span class="keyword">return</span> a - b&#125;);</span><br><span class="line">            <span class="keyword">if</span> (num.length % <span class="number">2</span> === <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">var</span> a = (num.length / <span class="number">2</span>) - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">var</span> b = (num.length / <span class="number">2</span>);</span><br><span class="line">                g= (num[a] + num[b]) / <span class="number">2</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">var</span> c = num.length / <span class="number">2</span>;</span><br><span class="line">                g=num[c - <span class="number">0.5</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> g;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>首先合并数组使用 数组的<code>concat</code>方法</p>
-<p>然后给合并后的数组排序</p>
-<p><strong>这里要注意<code> sort</code>排序 按照<em>字符串</em>顺序对值进行排序</strong>，所以当数组为[-2,-1,3]时，其排序后顺序[-1,-2,3]反而错了；</p>
-<p>我们通过一个<em>比值函数</em>来修正此问题：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> points = [<span class="number">40</span>, <span class="number">100</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">25</span>, <span class="number">10</span>];</span><br><span class="line">points.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>)</span>&#123;<span class="keyword">return</span> a - b&#125;); <span class="comment">//升序</span></span><br><span class="line"><span class="comment">//points.sort(function(a, b)&#123;return b - a&#125;); //降序</span></span><br></pre></td></tr></table></figure>
-
-<p>然后对于排序后的数组找中位数就可以了。</p>
-<p>这里可能主要考察排序算法，这里用<code>sort</code>有作弊之嫌了</p>
-<p>下边是正儿八经用排序算法写的暴力求解：</p>
-<p>作者：fe-lucifer<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays/solution/er-fen-fa-duo-yu-yan-javajs4-xun-zhao-liang-ge-zhe/">https://leetcode-cn.com/problems/median-of-two-sorted-arrays/solution/er-fen-fa-duo-yu-yan-javajs4-xun-zhao-liang-ge-zhe/</a><br>来源：力扣（LeetCode）</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> findMedianSortedArrays = <span class="function"><span class="keyword">function</span>(<span class="params">nums1, nums2</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 归并排序</span></span><br><span class="line">  <span class="keyword">const</span> merged = []</span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> j = <span class="number">0</span></span><br><span class="line">  <span class="keyword">while</span>(i &lt; nums1.length &amp;&amp; j &lt; nums2.length) &#123;</span><br><span class="line">    <span class="keyword">if</span> (nums1[i] &lt; nums2[j]) &#123;</span><br><span class="line">      merged.push(nums1[i++])</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      merged.push(nums2[j++])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span>(i &lt; nums1.length) &#123;</span><br><span class="line">    merged.push(nums1[i++])</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span>(j &lt; nums2.length) &#123;</span><br><span class="line">    merged.push(nums2[j++])</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> &#123; length &#125; = merged</span><br><span class="line">  <span class="keyword">return</span> length % <span class="number">2</span> === <span class="number">1</span></span><br><span class="line">    ? merged[<span class="built_in">Math</span>.floor(length / <span class="number">2</span>)]</span><br><span class="line">    : (merged[length / <span class="number">2</span>] + merged[length / <span class="number">2</span> - <span class="number">1</span>]) / <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>示例 4：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：x &#x3D; 0</span><br><span class="line">输出：0</span><br></pre></td></tr></table></figure>
 
 
+
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>执行用时：88 ms, 在所有 JavaScript 提交中击败了96.90%的用户</p>
+<p>内存消耗：39.4 MB, 在所有 JavaScript 提交中击败了58.27%的用户</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reverse = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">           <span class="keyword">if</span> (x &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">var</span> b = x.toString()</span><br><span class="line">            <span class="keyword">let</span> newStr = b.split(<span class="string">&quot;&quot;</span>).reverse()</span><br><span class="line">            <span class="keyword">var</span> str = newStr.join(<span class="string">&quot;&quot;</span>);</span><br><span class="line">            <span class="keyword">var</span> final =  <span class="built_in">Number</span>(str)</span><br><span class="line">            <span class="keyword">if</span>(final&gt;<span class="number">2147483647</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> final;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            x = -x;</span><br><span class="line">            <span class="keyword">var</span> b = x.toString()</span><br><span class="line">            <span class="keyword">let</span> newStr = b.split(<span class="string">&quot;&quot;</span>).reverse()</span><br><span class="line">            <span class="keyword">var</span> str = newStr.join(<span class="string">&quot;&quot;</span>);</span><br><span class="line">            <span class="keyword">var</span> final =  <span class="built_in">Number</span>(str)</span><br><span class="line">            <span class="keyword">if</span>(final&gt;<span class="number">2147483647</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> -final;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>
+</code></pre>
 
                 
             </div>
@@ -527,7 +519,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wtyx-2018.github.io/my-blog/my-blog/2021/05/06/%E9%A2%98%E8%A7%A3/">https://wtyx-2018.github.io/my-blog/my-blog/2021/05/06/%E9%A2%98%E8%A7%A3/</a>
+                    <a href="https://wtyx-2018.github.io/my-blog/my-blog/2021/05/07/7/">https://wtyx-2018.github.io/my-blog/my-blog/2021/05/07/7/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -565,8 +557,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/my-blog/tags/JavaScript/">
-                                    <span class="chip bg-color">JavaScript</span>
+                                <a href="/my-blog/tags/algorithm/">
+                                    <span class="chip bg-color">algorithm</span>
                                 </a>
                             
                         </div>
@@ -740,13 +732,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/my-blog/2021/05/07/7/">
+                <a href="/my-blog/2021/05/14/huiwenshu/">
                     <div class="card-image">
                         
                         
-                        <img src="/my-blog/medias/featureimages/0.jpg" class="responsive-img" alt="leetcode  整数反转">
+                        <img src="/my-blog/medias/featureimages/7.jpg" class="responsive-img" alt="回文数">
                         
-                        <span class="card-title">leetcode  整数反转</span>
+                        <span class="card-title">回文数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -757,7 +749,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-07
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-14
                         </span>
                         <span class="publish-author">
                             
@@ -785,13 +777,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/my-blog/2021/05/05/New/">
+                <a href="/my-blog/2021/05/06/%E9%A2%98%E8%A7%A3/">
                     <div class="card-image">
                         
                         
-                        <img src="/my-blog/medias/featureimages/9.jpg" class="responsive-img" alt="跨域问题">
+                        <img src="/my-blog/medias/featureimages/10.jpg" class="responsive-img" alt="寻找两个正序数组的中位数 leetcode 困难难度">
                         
-                        <span class="card-title">跨域问题</span>
+                        <span class="card-title">寻找两个正序数组的中位数 leetcode 困难难度</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -802,7 +794,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-06
                             </span>
                         <span class="publish-author">
                             
@@ -815,8 +807,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/my-blog/tags/Cross-domain-problems/">
-                        <span class="chip bg-color">Cross domain problems</span>
+                    <a href="/my-blog/tags/JavaScript/">
+                        <span class="chip bg-color">JavaScript</span>
                     </a>
                     
                 </div>
