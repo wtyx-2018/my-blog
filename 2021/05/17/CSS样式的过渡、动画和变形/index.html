@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="this指向的四种绑定规则, web前端">
+    <meta name="keywords" content="CSS样式的过渡、动画和变形, web前端">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>this指向的四种绑定规则 | 武藤游戏の博客</title>
+    <title>CSS样式的过渡、动画和变形 | 武藤游戏の博客</title>
     <link rel="icon" type="image/png" href="/my-blog/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/my-blog/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/my-blog/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/my-blog/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">this指向的四种绑定规则</h1>
+                    <h1 class="description center-align post-title">CSS样式的过渡、动画和变形</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/my-blog/tags/JavaScript/">
-                                <span class="chip bg-color">JavaScript</span>
+                            <a href="/my-blog/tags/CSS/">
+                                <span class="chip bg-color">CSS</span>
                             </a>
                         
                     </div>
@@ -447,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-04-28
+                    2021-05-17
                 </div>
                 
 
@@ -468,38 +468,33 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-默认绑定规则；"><a href="#1-默认绑定规则；" class="headerlink" title="1.默认绑定规则；"></a>1.默认绑定规则；</h2><p> 立即执行函数 </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">this</span>); <span class="comment">//window</span></span><br><span class="line"><span class="comment">// 函数的独立调用</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">test(); <span class="comment">//window</span></span><br></pre></td></tr></table></figure>
+                <h1 id="CSS样式的过渡、动画和变形"><a href="#CSS样式的过渡、动画和变形" class="headerlink" title="CSS样式的过渡、动画和变形"></a>CSS样式的过渡、动画和变形</h1><ul>
+<li><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_48574360/article/details/116774133#_1">一、过渡</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_48574360/article/details/116774133#_28">二、动画</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_48574360/article/details/116774133#_49">三、变形</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_48574360/article/details/116774133#_73">四、时钟案例</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="一、过渡"><a href="#一、过渡" class="headerlink" title="一、过渡"></a>一、过渡</h2><p>CSS 过渡是指在设置的时间内来平滑的改变属于值。</p>
+<p>transition用于设置过渡效果<br>属性值：</p>
+<p>transition 可以同时设置过渡相关的所有属性<br>transition-property 执行过渡的效果<br>transition-duration 指定过渡效果的时间<br>transition-delay 过渡效果的延迟，等待一段时间后在执行过程<br>transition-timing-function 指定过渡时间的效果<br>transition-property 可选值：width,height,all 多个属性使用逗号隔开，所有属性需要过渡则用all,过度时必须要有一个有效的数值向另一个有效的数值过渡。</p>
+<p>transition-duration：时间单位为s和ms，如2s或2000ms</p>
+<p>transition-delay：属性值也是以时间单位，如2s或2000ms</p>
+<p>transition-timing-function：可选值</p>
+<p>ease 默认值，慢速开始，先加速再减速<br>linear 匀速运动<br>ease-in 加速运动<br>ease-out 减速运动<br>ease-in-out 先加速后减速<br>cubic-bezier() 指定时序函数，取值范围0-1<br>steps() 分布执行过渡效果，第二个值start表示开始之前，end表示时间过后</p>
+<h2 id="二、动画"><a href="#二、动画" class="headerlink" title="二、动画"></a>二、动画</h2><p>动画使元素逐渐从一种样式变为另一种样式<br>您可以随意更改任意数量的 CSS 属性<br>关键帧包含元素在特定时间所拥有的样式<br>如需使用 CSS 动画，您必须首先为动画指定一些关键帧<br>如果您在 @keyframes 规则中指定了 CSS 样式，动画将在特定时间逐渐从当前样式更改为新样式。要使动画生效，必须将动画绑定到某个元素</p>
+<p>语法：@keyframes 名称{ from{}表示开始 to{}表示结束 }<br>animation属性</p>
+<p>animation-name 设置名称<br>animation-duration 执行时间<br>animation-delay 延迟时间<br>animation-iteration-count 动画执行的次数(infinite 无限次)<br>animation-direction指定动画运行时的方向(normal 默认值，正常播放 alternate 重复播放)<br>animation-timing-function 属性规定动画的速度曲线。<br>animation-play-state 执行状态(paused 动画暂停，running 动画执行)<br>animation-fill-mode 规定元素在不播放动画时的样式(在开始前、结束后，或两者同时)</p>
+<h2 id="三、变形"><a href="#三、变形" class="headerlink" title="三、变形"></a>三、变形</h2><p>通过CSS来改变元素的形状或位置，不会影响到页面的布局</p>
+<p>transform:用来设置元素的变形效果</p>
+<p>平移：</p>
+<p>translateX()沿着x轴方向平移<br>translateY()沿着y轴方向平移<br>translateZ()沿着z轴方向平移<br>旋转：</p>
+<p>rotateX() 根据x轴旋转<br>rotateY()根据y轴旋转<br>rotateZ()根据z轴旋转<br>缩放：</p>
+<p>scaleX() 水平方向缩放<br>scaleY() 垂直方向缩放<br>scaleZ() 双方向缩放</p>
+<h2 id="四、时钟案例"><a href="#四、时钟案例" class="headerlink" title="四、时钟案例"></a>四、时钟案例</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">        *&#123;</span><br><span class="line"><span class="css">            <span class="attribute">margin</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">padding</span>: <span class="number">0</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .box1&#123;</span><br><span class="line"><span class="css">            <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">height</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">margin</span>: <span class="number">100px</span> auto;</span></span><br><span class="line"><span class="css">            <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">position</span>: relative;</span></span><br><span class="line"><span class="css">            <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">./图片/333.jpeg</span>);</span></span><br><span class="line"><span class="css">            <span class="comment">/* 图片的比值不变，将元素铺满 */</span></span></span><br><span class="line"><span class="css">            <span class="attribute">background-size</span>: cover;</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.box1</span>&gt;<span class="selector-tag">div</span>&#123;</span></span><br><span class="line"><span class="css">            <span class="attribute">margin</span>: <span class="number">0</span> auto;</span></span><br><span class="line"><span class="css">            <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="css">            <span class="attribute">right</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">top</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">left</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">bottom</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">margin</span>: auto;</span></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="comment">/* 设置时针 */</span></span></span><br><span class="line">        .box2&#123;</span><br><span class="line"><span class="css">            <span class="attribute">width</span>: <span class="number">150px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">height</span>: <span class="number">150px</span>;  </span></span><br><span class="line"><span class="css">            <span class="attribute">animation</span>: run <span class="number">43200s</span> linear infinite;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .box2_one&#123;</span><br><span class="line"><span class="css">            <span class="attribute">width</span>: <span class="number">5px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">height</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">background-color</span>: black;</span></span><br><span class="line"><span class="css">            <span class="attribute">margin</span>: <span class="number">0</span> auto;</span></span><br><span class="line"><span class="css">            <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="comment">/* 设置分针 */</span></span></span><br><span class="line">        .box3&#123;</span><br><span class="line"><span class="css">            <span class="attribute">width</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">height</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">animation</span>: run <span class="number">3600s</span> <span class="built_in">steps</span>(<span class="number">60</span>) infinite;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .box3_one&#123;</span><br><span class="line"><span class="css">            <span class="attribute">width</span>: <span class="number">3px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">height</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">background-color</span>: black;</span></span><br><span class="line"><span class="css">            <span class="attribute">margin</span>: <span class="number">0</span> auto;</span></span><br><span class="line"><span class="css">            <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="comment">/* 设置秒针 */</span></span></span><br><span class="line">        .box4&#123;</span><br><span class="line"><span class="css">            <span class="attribute">width</span>: <span class="number">250px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">height</span>: <span class="number">250px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">animation</span>: run <span class="number">60s</span> infinite <span class="built_in">steps</span>(<span class="number">60</span>);</span></span><br><span class="line">        &#125;</span><br><span class="line">        .box4_one&#123;</span><br><span class="line"><span class="css">            <span class="attribute">width</span>: <span class="number">2px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">height</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">background-color</span>: <span class="built_in">rgb</span>(<span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>);</span></span><br><span class="line"><span class="css">            <span class="attribute">margin</span>: <span class="number">0</span> auto;</span></span><br><span class="line"><span class="css">            <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="keyword">@keyframes</span> run &#123;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">form</span>&#123;</span></span><br><span class="line"><span class="css">                <span class="attribute">transform</span>: <span class="built_in">rotateZ</span>(<span class="number">0deg</span>);</span></span><br><span class="line">                &#125;</span><br><span class="line"><span class="css">                <span class="selector-tag">to</span>&#123;</span></span><br><span class="line"><span class="css">                    <span class="attribute">transform</span>: <span class="built_in">rotateZ</span>(<span class="number">360deg</span>);</span></span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 时钟外环 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box1&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 时针 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box2&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box2_one&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 分针 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box3&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box3_one&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 秒针 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box4&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box4_one&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-
-
-<h2 id="2-隐式绑定规则（隐式丢失和参数赋值）；"><a href="#2-隐式绑定规则（隐式丢失和参数赋值）；" class="headerlink" title="2.隐式绑定规则（隐式丢失和参数赋值）；"></a>2.隐式绑定规则（隐式丢失和参数赋值）；</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">var</span> obj=&#123;</span><br><span class="line">          a:<span class="number">2</span>,</span><br><span class="line">          foo:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">             <span class="built_in">console</span>.log(<span class="built_in">this</span>); <span class="comment">//指向OBJ 2.隐式绑定规则</span></span><br><span class="line">             <span class="comment">//对象.语法调用</span></span><br><span class="line">             <span class="comment">//谁调用就指向谁</span></span><br><span class="line">             <span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                 <span class="built_in">console</span>.log(<span class="built_in">this</span>);<span class="comment">//</span></span><br><span class="line">             &#125;</span><br><span class="line">             test1();<span class="comment">//独立调用就指向window                      		闭包：return test1（）//window</span></span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      obj.foo();<span class="comment">//&#123;a:2, foo: f()&#125;</span></span><br></pre></td></tr></table></figure>
-
-<pre><code> 预编译的时候this就有了
-</code></pre>
-<p>​    函数执行时会产生自己的指向 函数不执行this没有任何意义</p>
-<p>​    每个this都代表一个函数执行</p>
-<p>​    当函数执行的时候，导致函数被定义，并抛出，就会产生闭包</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = <span class="number">0</span>;</span><br><span class="line">       <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">           <span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">       &#125; </span><br><span class="line">       <span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">           a: <span class="number">2</span>,</span><br><span class="line">           foo: foo</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">// obj1.foo();</span></span><br><span class="line">       <span class="comment">// 隐式丢失 可理解为独立调用</span></span><br><span class="line">       <span class="keyword">var</span> bar = obj1.foo; <span class="comment">//var bar = foo; </span></span><br><span class="line">       bar();</span><br><span class="line">       foo(); <span class="comment">//ECMA函数预编译 </span></span><br><span class="line">       <span class="comment">// 参数赋值的情况</span></span><br><span class="line">       <span class="function"><span class="keyword">function</span> <span class="title">bar1</span>(<span class="params">fn</span>)</span>&#123;<span class="comment">// 父函数是有能力决定子函数this指向的</span></span><br><span class="line">           fn(); <span class="comment">///独立调用  fn.call(obj)//指向obj fn(obj)</span></span><br><span class="line">       &#125;  </span><br><span class="line">       bar1(obj1.foo) <span class="comment">///独立调用</span></span><br><span class="line">       <span class="comment">// 预编译的过程中，实参被赋值为形参，（值的拷贝过程，浅拷贝）</span></span><br></pre></td></tr></table></figure>
-<h3 id="api-接口中指明的；"><a href="#api-接口中指明的；" class="headerlink" title="api 接口中指明的；"></a>api 接口中指明的；</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item,index,arr</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>); <span class="comment">//window</span></span><br><span class="line">&#125;,<span class="built_in">this</span>);</span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>);<span class="comment">//window</span></span><br><span class="line">    <span class="keyword">return</span> a-b;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">setInterval</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>);<span class="comment">//window</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="3-显式绑定规则；"><a href="#3-显式绑定规则；" class="headerlink" title="3.显式绑定规则；"></a>3.显式绑定规则；</h2><h4 id="显式绑定-：call-apply-bind"><a href="#显式绑定-：call-apply-bind" class="headerlink" title="显式绑定 ：call apply bind"></a>显式绑定 ：call apply bind</h4><p>采用call()和apply()，通过传入一个对象（若为基本类型，会被封装函数转为对象—装箱），将this绑定到该对象。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a,b,c,d,e</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">2</span>,</span><br><span class="line">    foo: foo</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> bar = obj.foo;</span><br><span class="line"></span><br><span class="line">bar.call(obj)</span><br><span class="line">bar.apply(obj)<span class="comment">//obj  apply传参是数组</span></span><br><span class="line">bar.bind(obj)<span class="comment">//bar.bind(obj)(参数)返回一个函数，本身并不会执行</span></span><br><span class="line">bar.call(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)<span class="comment">//Number&#123;1&#125;  通过包装的方式 显示相应的包装类 undefined null 没有包装类</span></span><br><span class="line">bar.call(<span class="literal">undefined</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)<span class="comment">//此时会采用默认的this window</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="4-new-绑定规则"><a href="#4-new-绑定规则" class="headerlink" title="4.new 绑定规则"></a>4.new 绑定规则</h2><p>任何函数都可能被用作构造函数，当函数被new操作符“构造调用”时，会执行下面操作：</p>
-<p>创建一个新对象（若该函数不是JS内置的，则创建一个新的Object对象）；<br>将this绑定到这个对象；<br>执行构造函数中的代码（为这个新对象添加属性）；<br>若函数没有返回其他对象，则自动返回这个新对象；若函数有return返回的是非对象，则还是自动返回这个新对象，即覆盖那个非对象。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.a = a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bar = <span class="keyword">new</span> foo( <span class="number">2</span> );</span><br><span class="line"><span class="built_in">console</span>.log( bar.a ); <span class="comment">// 2</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h1><p>箭头函数：不使用这四个this规则，根据词法作用域来决定this。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 返回一个箭头函数</span></span><br><span class="line">    <span class="keyword">return</span> (a) =&amp;gt; &#123;</span><br><span class="line">        <span class="comment">// `this` here is lexically adopted from `foo()`</span></span><br><span class="line">        <span class="built_in">console</span>.log( <span class="built_in">this</span>.a );</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">    a: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">    a: <span class="number">3</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// foo()不是箭头函数，他的this被绑定到obj1</span></span><br><span class="line"><span class="keyword">var</span> bar = foo.call( obj1 ); <span class="comment">// foo.call( obj1 )返回箭头函数，所以bar为箭头函数</span></span><br><span class="line">bar.call( obj2 ); <span class="comment">// 2! 箭头函数的this无法被修改，new也不行</span></span><br><span class="line"><span class="comment">//如下为和箭头函数一样的模式：</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> self = <span class="built_in">this</span>; <span class="comment">// lexical capture of `this`</span></span><br><span class="line">    <span class="built_in">setTimeout</span>( <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log( self.a );</span><br><span class="line">    &#125;, <span class="number">100</span> );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">foo.call( obj ); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="优先级问题"><a href="#优先级问题" class="headerlink" title="优先级问题"></a>优先级问题</h1><p>4&gt;3&gt;2&gt;1</p>
 
                 
             </div>
@@ -526,7 +521,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wtyx-2018.github.io/my-blog/my-blog/2021/04/28/this%E6%8C%87%E5%90%91%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%BB%91%E5%AE%9A%E8%A7%84%E5%88%99/">https://wtyx-2018.github.io/my-blog/my-blog/2021/04/28/this%E6%8C%87%E5%90%91%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%BB%91%E5%AE%9A%E8%A7%84%E5%88%99/</a>
+                    <a href="https://wtyx-2018.github.io/my-blog/my-blog/2021/05/17/CSS%E6%A0%B7%E5%BC%8F%E7%9A%84%E8%BF%87%E6%B8%A1%E3%80%81%E5%8A%A8%E7%94%BB%E5%92%8C%E5%8F%98%E5%BD%A2/">https://wtyx-2018.github.io/my-blog/my-blog/2021/05/17/CSS%E6%A0%B7%E5%BC%8F%E7%9A%84%E8%BF%87%E6%B8%A1%E3%80%81%E5%8A%A8%E7%94%BB%E5%92%8C%E5%8F%98%E5%BD%A2/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -564,8 +559,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/my-blog/tags/JavaScript/">
-                                    <span class="chip bg-color">JavaScript</span>
+                                <a href="/my-blog/tags/CSS/">
+                                    <span class="chip bg-color">CSS</span>
                                 </a>
                             
                         </div>
@@ -739,13 +734,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/my-blog/2021/05/03/Js%E4%B8%AD%E7%9A%84%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">
+                <a href="/my-blog/2021/05/20/aboutme/">
                     <div class="card-image">
                         
                         
-                        <img src="/my-blog/medias/featureimages/23.jpg" class="responsive-img" alt="Js中的防抖与节流">
+                        <img src="/my-blog/medias/featureimages/6.jpg" class="responsive-img" alt="关于我">
                         
-                        <span class="card-title">Js中的防抖与节流</span>
+                        <span class="card-title">关于我</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -756,7 +751,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-03
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-20
                         </span>
                         <span class="publish-author">
                             
@@ -765,14 +760,6 @@
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/my-blog/tags/JavaScript/">
-                        <span class="chip bg-color">JavaScript</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -784,13 +771,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/my-blog/2021/04/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6/">
+                <a href="/my-blog/2021/05/15/%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97/">
                     <div class="card-image">
                         
                         
-                        <img src="/my-blog/medias/featureimages/22.jpg" class="responsive-img" alt="浏览器的渲染机制">
+                        <img src="/my-blog/medias/featureimages/20.jpg" class="responsive-img" alt="整数转罗马数字">
                         
-                        <span class="card-title">浏览器的渲染机制</span>
+                        <span class="card-title">整数转罗马数字</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -801,7 +788,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-15
                             </span>
                         <span class="publish-author">
                             
@@ -814,8 +801,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/my-blog/tags/browser/">
-                        <span class="chip bg-color">browser</span>
+                    <a href="/my-blog/tags/algorithm/">
+                        <span class="chip bg-color">algorithm</span>
                     </a>
                     
                 </div>

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="this指向的四种绑定规则, web前端">
+    <meta name="keywords" content="关于我, web前端">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>this指向的四种绑定规则 | 武藤游戏の博客</title>
+    <title>关于我 | 武藤游戏の博客</title>
     <link rel="icon" type="image/png" href="/my-blog/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/my-blog/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/my-blog/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/my-blog/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">this指向的四种绑定规则</h1>
+                    <h1 class="description center-align post-title">关于我</h1>
                 </div>
             </div>
         </div>
@@ -429,13 +429,9 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/my-blog/tags/JavaScript/">
-                                <span class="chip bg-color">JavaScript</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -447,7 +443,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-04-28
+                    2021-05-20
                 </div>
                 
 
@@ -468,39 +464,8 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-默认绑定规则；"><a href="#1-默认绑定规则；" class="headerlink" title="1.默认绑定规则；"></a>1.默认绑定规则；</h2><p> 立即执行函数 </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">this</span>); <span class="comment">//window</span></span><br><span class="line"><span class="comment">// 函数的独立调用</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">test(); <span class="comment">//window</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="2-隐式绑定规则（隐式丢失和参数赋值）；"><a href="#2-隐式绑定规则（隐式丢失和参数赋值）；" class="headerlink" title="2.隐式绑定规则（隐式丢失和参数赋值）；"></a>2.隐式绑定规则（隐式丢失和参数赋值）；</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">var</span> obj=&#123;</span><br><span class="line">          a:<span class="number">2</span>,</span><br><span class="line">          foo:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">             <span class="built_in">console</span>.log(<span class="built_in">this</span>); <span class="comment">//指向OBJ 2.隐式绑定规则</span></span><br><span class="line">             <span class="comment">//对象.语法调用</span></span><br><span class="line">             <span class="comment">//谁调用就指向谁</span></span><br><span class="line">             <span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                 <span class="built_in">console</span>.log(<span class="built_in">this</span>);<span class="comment">//</span></span><br><span class="line">             &#125;</span><br><span class="line">             test1();<span class="comment">//独立调用就指向window                      		闭包：return test1（）//window</span></span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      obj.foo();<span class="comment">//&#123;a:2, foo: f()&#125;</span></span><br></pre></td></tr></table></figure>
-
-<pre><code> 预编译的时候this就有了
-</code></pre>
-<p>​    函数执行时会产生自己的指向 函数不执行this没有任何意义</p>
-<p>​    每个this都代表一个函数执行</p>
-<p>​    当函数执行的时候，导致函数被定义，并抛出，就会产生闭包</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = <span class="number">0</span>;</span><br><span class="line">       <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">           <span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">       &#125; </span><br><span class="line">       <span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">           a: <span class="number">2</span>,</span><br><span class="line">           foo: foo</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">// obj1.foo();</span></span><br><span class="line">       <span class="comment">// 隐式丢失 可理解为独立调用</span></span><br><span class="line">       <span class="keyword">var</span> bar = obj1.foo; <span class="comment">//var bar = foo; </span></span><br><span class="line">       bar();</span><br><span class="line">       foo(); <span class="comment">//ECMA函数预编译 </span></span><br><span class="line">       <span class="comment">// 参数赋值的情况</span></span><br><span class="line">       <span class="function"><span class="keyword">function</span> <span class="title">bar1</span>(<span class="params">fn</span>)</span>&#123;<span class="comment">// 父函数是有能力决定子函数this指向的</span></span><br><span class="line">           fn(); <span class="comment">///独立调用  fn.call(obj)//指向obj fn(obj)</span></span><br><span class="line">       &#125;  </span><br><span class="line">       bar1(obj1.foo) <span class="comment">///独立调用</span></span><br><span class="line">       <span class="comment">// 预编译的过程中，实参被赋值为形参，（值的拷贝过程，浅拷贝）</span></span><br></pre></td></tr></table></figure>
-<h3 id="api-接口中指明的；"><a href="#api-接口中指明的；" class="headerlink" title="api 接口中指明的；"></a>api 接口中指明的；</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item,index,arr</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>); <span class="comment">//window</span></span><br><span class="line">&#125;,<span class="built_in">this</span>);</span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>);<span class="comment">//window</span></span><br><span class="line">    <span class="keyword">return</span> a-b;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">setInterval</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>);<span class="comment">//window</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="3-显式绑定规则；"><a href="#3-显式绑定规则；" class="headerlink" title="3.显式绑定规则；"></a>3.显式绑定规则；</h2><h4 id="显式绑定-：call-apply-bind"><a href="#显式绑定-：call-apply-bind" class="headerlink" title="显式绑定 ：call apply bind"></a>显式绑定 ：call apply bind</h4><p>采用call()和apply()，通过传入一个对象（若为基本类型，会被封装函数转为对象—装箱），将this绑定到该对象。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a,b,c,d,e</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">2</span>,</span><br><span class="line">    foo: foo</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> bar = obj.foo;</span><br><span class="line"></span><br><span class="line">bar.call(obj)</span><br><span class="line">bar.apply(obj)<span class="comment">//obj  apply传参是数组</span></span><br><span class="line">bar.bind(obj)<span class="comment">//bar.bind(obj)(参数)返回一个函数，本身并不会执行</span></span><br><span class="line">bar.call(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)<span class="comment">//Number&#123;1&#125;  通过包装的方式 显示相应的包装类 undefined null 没有包装类</span></span><br><span class="line">bar.call(<span class="literal">undefined</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)<span class="comment">//此时会采用默认的this window</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="4-new-绑定规则"><a href="#4-new-绑定规则" class="headerlink" title="4.new 绑定规则"></a>4.new 绑定规则</h2><p>任何函数都可能被用作构造函数，当函数被new操作符“构造调用”时，会执行下面操作：</p>
-<p>创建一个新对象（若该函数不是JS内置的，则创建一个新的Object对象）；<br>将this绑定到这个对象；<br>执行构造函数中的代码（为这个新对象添加属性）；<br>若函数没有返回其他对象，则自动返回这个新对象；若函数有return返回的是非对象，则还是自动返回这个新对象，即覆盖那个非对象。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.a = a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bar = <span class="keyword">new</span> foo( <span class="number">2</span> );</span><br><span class="line"><span class="built_in">console</span>.log( bar.a ); <span class="comment">// 2</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h1><p>箭头函数：不使用这四个this规则，根据词法作用域来决定this。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 返回一个箭头函数</span></span><br><span class="line">    <span class="keyword">return</span> (a) =&amp;gt; &#123;</span><br><span class="line">        <span class="comment">// `this` here is lexically adopted from `foo()`</span></span><br><span class="line">        <span class="built_in">console</span>.log( <span class="built_in">this</span>.a );</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">    a: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">    a: <span class="number">3</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// foo()不是箭头函数，他的this被绑定到obj1</span></span><br><span class="line"><span class="keyword">var</span> bar = foo.call( obj1 ); <span class="comment">// foo.call( obj1 )返回箭头函数，所以bar为箭头函数</span></span><br><span class="line">bar.call( obj2 ); <span class="comment">// 2! 箭头函数的this无法被修改，new也不行</span></span><br><span class="line"><span class="comment">//如下为和箭头函数一样的模式：</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> self = <span class="built_in">this</span>; <span class="comment">// lexical capture of `this`</span></span><br><span class="line">    <span class="built_in">setTimeout</span>( <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log( self.a );</span><br><span class="line">    &#125;, <span class="number">100</span> );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">foo.call( obj ); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="优先级问题"><a href="#优先级问题" class="headerlink" title="优先级问题"></a>优先级问题</h1><p>4&gt;3&gt;2&gt;1</p>
-
+                <p>现在大三，希望能找到一份暑假实习，方便在秋招找到工作。<br>每两天跑一次步，每天坚持俯卧撑，身体健康能适应高强度工作<br>热爱前端开发，对前端技术有强烈的好奇心和求知欲</p>
+<h6 id="等问题出现了我再告诉大家"><a href="#等问题出现了我再告诉大家" class="headerlink" title="等问题出现了我再告诉大家"></a>等问题出现了我再告诉大家</h6>
                 
             </div>
             <hr/>
@@ -526,7 +491,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wtyx-2018.github.io/my-blog/my-blog/2021/04/28/this%E6%8C%87%E5%90%91%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%BB%91%E5%AE%9A%E8%A7%84%E5%88%99/">https://wtyx-2018.github.io/my-blog/my-blog/2021/04/28/this%E6%8C%87%E5%90%91%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%BB%91%E5%AE%9A%E8%A7%84%E5%88%99/</a>
+                    <a href="https://wtyx-2018.github.io/my-blog/my-blog/2021/05/20/aboutme/">https://wtyx-2018.github.io/my-blog/my-blog/2021/05/20/aboutme/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -563,11 +528,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/my-blog/tags/JavaScript/">
-                                    <span class="chip bg-color">JavaScript</span>
-                                </a>
-                            
+                            <span class="chip bg-color">No tag</span>
                         </div>
                     
                 </div>
@@ -739,13 +700,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/my-blog/2021/05/03/Js%E4%B8%AD%E7%9A%84%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">
+                <a href="/my-blog/2021/05/21/%E5%89%91%E6%8C%87%20Offer%2005.%20%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC/">
                     <div class="card-image">
                         
                         
-                        <img src="/my-blog/medias/featureimages/23.jpg" class="responsive-img" alt="Js中的防抖与节流">
+                        <img src="/my-blog/medias/featureimages/5.jpg" class="responsive-img" alt="替换空格">
                         
-                        <span class="card-title">Js中的防抖与节流</span>
+                        <span class="card-title">替换空格</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -756,7 +717,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-03
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-21
                         </span>
                         <span class="publish-author">
                             
@@ -769,8 +730,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/my-blog/tags/JavaScript/">
-                        <span class="chip bg-color">JavaScript</span>
+                    <a href="/my-blog/tags/algorithm/">
+                        <span class="chip bg-color">algorithm</span>
                     </a>
                     
                 </div>
@@ -784,13 +745,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/my-blog/2021/04/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6/">
+                <a href="/my-blog/2021/05/17/CSS%E6%A0%B7%E5%BC%8F%E7%9A%84%E8%BF%87%E6%B8%A1%E3%80%81%E5%8A%A8%E7%94%BB%E5%92%8C%E5%8F%98%E5%BD%A2/">
                     <div class="card-image">
                         
                         
-                        <img src="/my-blog/medias/featureimages/22.jpg" class="responsive-img" alt="浏览器的渲染机制">
+                        <img src="/my-blog/medias/featureimages/13.jpg" class="responsive-img" alt="CSS样式的过渡、动画和变形">
                         
-                        <span class="card-title">浏览器的渲染机制</span>
+                        <span class="card-title">CSS样式的过渡、动画和变形</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -801,7 +762,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-17
                             </span>
                         <span class="publish-author">
                             
@@ -814,8 +775,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/my-blog/tags/browser/">
-                        <span class="chip bg-color">browser</span>
+                    <a href="/my-blog/tags/CSS/">
+                        <span class="chip bg-color">CSS</span>
                     </a>
                     
                 </div>

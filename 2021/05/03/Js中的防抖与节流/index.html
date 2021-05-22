@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="this指向的四种绑定规则, web前端">
+    <meta name="keywords" content="Js中的防抖与节流, web前端">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>this指向的四种绑定规则 | 武藤游戏の博客</title>
+    <title>Js中的防抖与节流 | 武藤游戏の博客</title>
     <link rel="icon" type="image/png" href="/my-blog/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/my-blog/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/my-blog/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/my-blog/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">this指向的四种绑定规则</h1>
+                    <h1 class="description center-align post-title">Js中的防抖与节流</h1>
                 </div>
             </div>
         </div>
@@ -447,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-04-28
+                    2021-05-03
                 </div>
                 
 
@@ -468,38 +468,100 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-默认绑定规则；"><a href="#1-默认绑定规则；" class="headerlink" title="1.默认绑定规则；"></a>1.默认绑定规则；</h2><p> 立即执行函数 </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">this</span>); <span class="comment">//window</span></span><br><span class="line"><span class="comment">// 函数的独立调用</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">test(); <span class="comment">//window</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="2-隐式绑定规则（隐式丢失和参数赋值）；"><a href="#2-隐式绑定规则（隐式丢失和参数赋值）；" class="headerlink" title="2.隐式绑定规则（隐式丢失和参数赋值）；"></a>2.隐式绑定规则（隐式丢失和参数赋值）；</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">var</span> obj=&#123;</span><br><span class="line">          a:<span class="number">2</span>,</span><br><span class="line">          foo:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">             <span class="built_in">console</span>.log(<span class="built_in">this</span>); <span class="comment">//指向OBJ 2.隐式绑定规则</span></span><br><span class="line">             <span class="comment">//对象.语法调用</span></span><br><span class="line">             <span class="comment">//谁调用就指向谁</span></span><br><span class="line">             <span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                 <span class="built_in">console</span>.log(<span class="built_in">this</span>);<span class="comment">//</span></span><br><span class="line">             &#125;</span><br><span class="line">             test1();<span class="comment">//独立调用就指向window                      		闭包：return test1（）//window</span></span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      obj.foo();<span class="comment">//&#123;a:2, foo: f()&#125;</span></span><br></pre></td></tr></table></figure>
-
-<pre><code> 预编译的时候this就有了
-</code></pre>
-<p>​    函数执行时会产生自己的指向 函数不执行this没有任何意义</p>
-<p>​    每个this都代表一个函数执行</p>
-<p>​    当函数执行的时候，导致函数被定义，并抛出，就会产生闭包</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = <span class="number">0</span>;</span><br><span class="line">       <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">           <span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">       &#125; </span><br><span class="line">       <span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">           a: <span class="number">2</span>,</span><br><span class="line">           foo: foo</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">// obj1.foo();</span></span><br><span class="line">       <span class="comment">// 隐式丢失 可理解为独立调用</span></span><br><span class="line">       <span class="keyword">var</span> bar = obj1.foo; <span class="comment">//var bar = foo; </span></span><br><span class="line">       bar();</span><br><span class="line">       foo(); <span class="comment">//ECMA函数预编译 </span></span><br><span class="line">       <span class="comment">// 参数赋值的情况</span></span><br><span class="line">       <span class="function"><span class="keyword">function</span> <span class="title">bar1</span>(<span class="params">fn</span>)</span>&#123;<span class="comment">// 父函数是有能力决定子函数this指向的</span></span><br><span class="line">           fn(); <span class="comment">///独立调用  fn.call(obj)//指向obj fn(obj)</span></span><br><span class="line">       &#125;  </span><br><span class="line">       bar1(obj1.foo) <span class="comment">///独立调用</span></span><br><span class="line">       <span class="comment">// 预编译的过程中，实参被赋值为形参，（值的拷贝过程，浅拷贝）</span></span><br></pre></td></tr></table></figure>
-<h3 id="api-接口中指明的；"><a href="#api-接口中指明的；" class="headerlink" title="api 接口中指明的；"></a>api 接口中指明的；</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item,index,arr</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>); <span class="comment">//window</span></span><br><span class="line">&#125;,<span class="built_in">this</span>);</span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>);<span class="comment">//window</span></span><br><span class="line">    <span class="keyword">return</span> a-b;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">setInterval</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>);<span class="comment">//window</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="3-显式绑定规则；"><a href="#3-显式绑定规则；" class="headerlink" title="3.显式绑定规则；"></a>3.显式绑定规则；</h2><h4 id="显式绑定-：call-apply-bind"><a href="#显式绑定-：call-apply-bind" class="headerlink" title="显式绑定 ：call apply bind"></a>显式绑定 ：call apply bind</h4><p>采用call()和apply()，通过传入一个对象（若为基本类型，会被封装函数转为对象—装箱），将this绑定到该对象。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a,b,c,d,e</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">2</span>,</span><br><span class="line">    foo: foo</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> bar = obj.foo;</span><br><span class="line"></span><br><span class="line">bar.call(obj)</span><br><span class="line">bar.apply(obj)<span class="comment">//obj  apply传参是数组</span></span><br><span class="line">bar.bind(obj)<span class="comment">//bar.bind(obj)(参数)返回一个函数，本身并不会执行</span></span><br><span class="line">bar.call(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)<span class="comment">//Number&#123;1&#125;  通过包装的方式 显示相应的包装类 undefined null 没有包装类</span></span><br><span class="line">bar.call(<span class="literal">undefined</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)<span class="comment">//此时会采用默认的this window</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="4-new-绑定规则"><a href="#4-new-绑定规则" class="headerlink" title="4.new 绑定规则"></a>4.new 绑定规则</h2><p>任何函数都可能被用作构造函数，当函数被new操作符“构造调用”时，会执行下面操作：</p>
-<p>创建一个新对象（若该函数不是JS内置的，则创建一个新的Object对象）；<br>将this绑定到这个对象；<br>执行构造函数中的代码（为这个新对象添加属性）；<br>若函数没有返回其他对象，则自动返回这个新对象；若函数有return返回的是非对象，则还是自动返回这个新对象，即覆盖那个非对象。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.a = a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bar = <span class="keyword">new</span> foo( <span class="number">2</span> );</span><br><span class="line"><span class="built_in">console</span>.log( bar.a ); <span class="comment">// 2</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h1><p>箭头函数：不使用这四个this规则，根据词法作用域来决定this。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 返回一个箭头函数</span></span><br><span class="line">    <span class="keyword">return</span> (a) =&amp;gt; &#123;</span><br><span class="line">        <span class="comment">// `this` here is lexically adopted from `foo()`</span></span><br><span class="line">        <span class="built_in">console</span>.log( <span class="built_in">this</span>.a );</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">    a: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">    a: <span class="number">3</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// foo()不是箭头函数，他的this被绑定到obj1</span></span><br><span class="line"><span class="keyword">var</span> bar = foo.call( obj1 ); <span class="comment">// foo.call( obj1 )返回箭头函数，所以bar为箭头函数</span></span><br><span class="line">bar.call( obj2 ); <span class="comment">// 2! 箭头函数的this无法被修改，new也不行</span></span><br><span class="line"><span class="comment">//如下为和箭头函数一样的模式：</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> self = <span class="built_in">this</span>; <span class="comment">// lexical capture of `this`</span></span><br><span class="line">    <span class="built_in">setTimeout</span>( <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log( self.a );</span><br><span class="line">    &#125;, <span class="number">100</span> );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">foo.call( obj ); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="优先级问题"><a href="#优先级问题" class="headerlink" title="优先级问题"></a>优先级问题</h1><p>4&gt;3&gt;2&gt;1</p>
+                <h1 id="Js中的防抖与节流"><a href="#Js中的防抖与节流" class="headerlink" title="Js中的防抖与节流"></a>Js中的防抖与节流</h1><p>防抖(debounce)和节流(throttle)两词其实并非计算机领域的原生词语。追根溯源，防抖一词来自于弱电领域，指代的是消除外界对于开关扰动的技术。而节流来自于流体力学，指代的是限定流体流量的一种技术。由于JavaScript拥有事件驱动的特性，为避免事件频繁触发导致性能的损耗，防抖和节流这两种技术在JavaScript中亦被广泛应用。</p>
+<h2 id="为什么需要防抖和节流？"><a href="#为什么需要防抖和节流？" class="headerlink" title="为什么需要防抖和节流？"></a>为什么需要防抖和节流？</h2><p>日常与浏览器打交道比较多的前端开发者对于浏览器的各种事件想必都不会陌生，我们会针对某一个特定的事件绑定对应的响应函数，在事件被触发时让浏览器自动调用该函数。</p>
+<table>
+<thead>
+<tr>
+<th><code>1 2 3 4 5 </code></th>
+<th><code>function onResizeHandler() &#123;    // do something on resize &#125; window.addEventListener(&#39;resize&#39;, onResizeHandler); </code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>如果只是一些触发频率很低的事件，那么上面的代码并没有什么问题。但是如果像resize这样可能在短时间内被频繁触发的事件（比如click/keydown/touchStart等），我们不去做任何的处理的话，可能导致事件的响应函数在短时间内被大量的触发，造成浏览器卡顿，伤害用户体验。</p>
+<p>而节流和防抖一个很经典的应用场景就是去控制我们的事件的触发，节省浏览器开销。</p>
+<h2 id="什么是防抖"><a href="#什么是防抖" class="headerlink" title="什么是防抖"></a>什么是防抖</h2><p>JavaScript中的防抖指的是只有在x ms内没有调用该函数，才会真正调用该函数。如下图</p>
+<p><img src="https://hateonion.me/posts/19jan02/6i7gtoy0gm.jpg" alt="img"></p>
+<p>该图上方是事件触发的次数，下方是响应函数触发的次数，可以发现在事件大量被触发时(色块密集)，响应函数并没有被触发。当事件停止触发一段事件后(三个色块的时间间隔)后，响应函数才会被真正的触发。</p>
+<p>如果你想自己试试上面的例子，可以访问这个 <a target="_blank" rel="noopener" href="https://codepen.io/dcorb/pen/KVxGqN">codePen</a> 。</p>
+<h2 id="防抖的简单实现"><a href="#防抖的简单实现" class="headerlink" title="防抖的简单实现"></a>防抖的简单实现</h2><p>防抖函数其实是一个高阶函数，接收一个函数和防抖事件作为参数，返回值为防抖处理的函数。</p>
+<p>的实现其实很简单，我们需要的是是一个定时器，如果在定时器的定时结束前，响应函数被触发的话则重置这个定时器的时间。</p>
+<table>
+<thead>
+<tr>
+<th><code>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25</code></th>
+<th><code>function debounce(fn, wait, leading=false) &#123;  /** @type &#123;number&#125; */  let timer;  /** @type &#123;number&#125; */  let lastCallTime;  /** @type &#123;boolean&#125; */  let isInvoked = false;  return function debounced(...args) &#123;    const context = this;    const thisCallTime = Date.now();    if(leading) &#123;      if(!isInvoked) &#123;        fn.apply(context, args);        isInvoked = true;      &#125;      if(thisCallTime - lastCallTime &gt;= wait) &#123;        fn.apply(context, args);      &#125;      lastCallTime = Date.now();      return;    &#125;    clearTimeout(timer);    timer = setTimeout(() =&gt; fn.apply(context, args), wait);  &#125; &#125; </code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>需要注意的是，上面的函数添加了leading参数。传统的防抖函数响应函数第一次触发也需要等待x ms，使用该参数可让响应函数立即进行触发。</p>
+<h2 id="防抖的应用场景"><a href="#防抖的应用场景" class="headerlink" title="防抖的应用场景"></a>防抖的应用场景</h2><p>防抖函数的应用场景很多，比如我们需要得到浏览器窗口resize前后窗口的大小。</p>
+<table>
+<thead>
+<tr>
+<th><code>1 2 3 </code></th>
+<th><code>function onResizeHandler() &#123;    return  </code>${window.width()} + ${window.height()}<code>; &#125; </code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>当浏览器窗口被拖动的时候，这个响应函数便会触发多次，但是我们实际上想得到的只有resize前和resize后的窗口大小。这时候使用防抖便能很好的解决这个问题。</p>
+<p>另一个很经典的使用场景是表单验证，往往表单验证是和input框的onChange绑定在一起的。</p>
+<table>
+<thead>
+<tr>
+<th><code>1 2 3 </code></th>
+<th><code>function onChange(e) &#123;    validate(e.target.value); &#125; </code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>但是如果直接绑定onChange事件，用户的每个字符输入都会触发校验，可能会造成输入卡顿或者给用户抛出错误的校验失败信息，伤害用户体验。这时候如果我们给onChange绑定的是一个经过防抖处理的响应函数，便能很好的避免这种问题了。</p>
+<h2 id="什么是节流"><a href="#什么是节流" class="headerlink" title="什么是节流"></a>什么是节流</h2><p>节流指的是在x ms内，某一个函数只能被触发一次。</p>
+<p><img src="https://hateonion.me/posts/19jan02/ye2dn7sjlj.jpg" alt="img"></p>
+<h2 id="节流的简单实现"><a href="#节流的简单实现" class="headerlink" title="节流的简单实现"></a>节流的简单实现</h2><p>节流本质上是通过记录本次调用时间和上次调用时间来实现的。</p>
+<table>
+<thead>
+<tr>
+<th><code>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16</code></th>
+<th><code>function throttle(fn, threshold)&#123; let lastCallTime;  let isInvoked = false;  return function throttled(...args) &#123;    const thisCallTime = Date.now();    if(!isInvoked) &#123;      fn.apply(this, args);      lastCallTime = Date.now();      isInvoked = true;    &#125;    if(thisCallTime - lastCallTime &gt;= threshold) &#123;      fn.apply(this, args);      lastCallTime = Date.now();    &#125;  &#125; &#125; </code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="节流的应用场景"><a href="#节流的应用场景" class="headerlink" title="节流的应用场景"></a>节流的应用场景</h2><p>节流有一些很经典的应用场景</p>
+<p>比如对于一个Button短时间内进行多次点击，可能没有必要触发多次handler，这时候就可以对click的响应函数进行节流处理。</p>
+<p>或者一个使用键盘控制的飞机大战的游戏，子弹的射出速度是有限制的，不管你在短时间内触发多少次发射按键，永远只会有一枚子弹被发射。</p>
+<p>再或者是在实现无限滚动时，需要去监测内容底部是否已经接近window底部，如果是的话就需要去请求新的内容。关于无限滚动，有一个很棒的 <a target="_blank" rel="noopener" href="https://codepen.io/dcorb/pen/eJLMxa">codePen</a> demo。</p>
+<h2 id="requestAnimationFrame"><a href="#requestAnimationFrame" class="headerlink" title="requestAnimationFrame"></a>requestAnimationFrame</h2><p>在最后要提一下requestAnimationFrame这个浏览器API。这个函数可以理解为 <code>throttle(handler, 16)</code> (16为60fps计算得出) 的浏览器原生实现。当然浏览器不仅做了简单的throttle，还有一些分片和空闲thread监测功能，来保证被这个函数处理的函数能满足每秒60帧的要求。</p>
+<p>在某些情况下我们也可以调用这个函数来完成类似throttle的功能。但是需要注意的是</p>
+<ul>
+<li>你需要手动触发requestAnimationFrame，但是throttle一旦被设置好后是自动触发的</li>
+<li>requestAnimationFrame不支持IE9及以下</li>
+<li>requestAnimationFrame是一个浏览器API，nodejs无法使用。</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>防抖是指某个函数在空闲x ms后才被调用，如果该段时间内该函数被触发，则重置计时器。常用场景有resize事件或者input框的onChang事件</li>
+<li>节流是指某个函数在x ms内只能被触发一次。常用场景有button的click事件或者键盘事件等。</li>
+<li>requestAnimationFrame是浏览器提供的API，提供了throttle(handler,16)类似的功能但是会有更多浏览器级别的优化来保证每秒16帧的渲染结果。</li>
+</ul>
 
                 
             </div>
@@ -526,7 +588,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wtyx-2018.github.io/my-blog/my-blog/2021/04/28/this%E6%8C%87%E5%90%91%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%BB%91%E5%AE%9A%E8%A7%84%E5%88%99/">https://wtyx-2018.github.io/my-blog/my-blog/2021/04/28/this%E6%8C%87%E5%90%91%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%BB%91%E5%AE%9A%E8%A7%84%E5%88%99/</a>
+                    <a href="https://wtyx-2018.github.io/my-blog/my-blog/2021/05/03/Js%E4%B8%AD%E7%9A%84%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">https://wtyx-2018.github.io/my-blog/my-blog/2021/05/03/Js%E4%B8%AD%E7%9A%84%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -739,13 +801,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/my-blog/2021/05/03/Js%E4%B8%AD%E7%9A%84%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">
+                <a href="/my-blog/2021/05/05/New/">
                     <div class="card-image">
                         
                         
-                        <img src="/my-blog/medias/featureimages/23.jpg" class="responsive-img" alt="Js中的防抖与节流">
+                        <img src="/my-blog/medias/featureimages/9.jpg" class="responsive-img" alt="跨域问题">
                         
-                        <span class="card-title">Js中的防抖与节流</span>
+                        <span class="card-title">跨域问题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -756,7 +818,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-03
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-05
                         </span>
                         <span class="publish-author">
                             
@@ -769,8 +831,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/my-blog/tags/JavaScript/">
-                        <span class="chip bg-color">JavaScript</span>
+                    <a href="/my-blog/tags/Cross-domain-problems/">
+                        <span class="chip bg-color">Cross domain problems</span>
                     </a>
                     
                 </div>
@@ -784,13 +846,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/my-blog/2021/04/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6/">
+                <a href="/my-blog/2021/04/28/this%E6%8C%87%E5%90%91%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%BB%91%E5%AE%9A%E8%A7%84%E5%88%99/">
                     <div class="card-image">
                         
                         
-                        <img src="/my-blog/medias/featureimages/22.jpg" class="responsive-img" alt="浏览器的渲染机制">
+                        <img src="/my-blog/medias/featureimages/4.jpg" class="responsive-img" alt="this指向的四种绑定规则">
                         
-                        <span class="card-title">浏览器的渲染机制</span>
+                        <span class="card-title">this指向的四种绑定规则</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -814,8 +876,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/my-blog/tags/browser/">
-                        <span class="chip bg-color">browser</span>
+                    <a href="/my-blog/tags/JavaScript/">
+                        <span class="chip bg-color">JavaScript</span>
                     </a>
                     
                 </div>
