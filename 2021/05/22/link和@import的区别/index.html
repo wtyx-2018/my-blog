@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="二维数组中的查找, web前端">
+    <meta name="keywords" content="link和@import的区别, web前端">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>二维数组中的查找 | 武藤游戏の博客</title>
+    <title>link和@import的区别 | 武藤游戏の博客</title>
     <link rel="icon" type="image/png" href="/my-blog/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/my-blog/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/my-blog/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/my-blog/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">二维数组中的查找</h1>
+                    <h1 class="description center-align post-title">link和@import的区别</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/my-blog/tags/algorithm/">
-                                <span class="chip bg-color">algorithm</span>
+                            <a href="/my-blog/tags/css/">
+                                <span class="chip bg-color">css</span>
                             </a>
                         
                     </div>
@@ -447,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-05-21
+                    2021-05-22
                 </div>
                 
 
@@ -468,23 +468,115 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="剑指-Offer-04-二维数组中的查找"><a href="#剑指-Offer-04-二维数组中的查找" class="headerlink" title="剑指 Offer 04. 二维数组中的查找"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/">剑指 Offer 04. 二维数组中的查找</a></h4><p>难度中等328收藏分享切换为英文接收动态反馈</p>
-<p>在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
-<p><strong>示例:</strong></p>
-<p>现有矩阵 matrix 如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [1,   4,  7, 11, 15],</span><br><span class="line">  [2,   5,  8, 12, 19],</span><br><span class="line">  [3,   6,  9, 16, 22],</span><br><span class="line">  [10, 13, 14, 17, 24],</span><br><span class="line">  [18, 21, 23, 26, 30]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+                <h1 id="link和-import的区别"><a href="#link和-import的区别" class="headerlink" title="link和@import的区别"></a>link和@import的区别</h1><h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><p><strong>1.从属关系区别</strong><br><code>@import</code>是 CSS 提供的语法规则，只有导入样式表的作用；<code>link</code>是HTML提供的标签，不仅可以加载 CSS 文件，还可以定义 RSS、rel 连接属性等。</p>
+<p><strong>2.加载顺序区别</strong><br>加载页面时，<code>link</code>标签引入的 CSS 被同时加载；<code>@import</code>引入的 CSS 将在页面加载完毕后被加载。</p>
+<p><strong>3.兼容性区别</strong><br><code>@import</code>是 CSS2.1 才有的语法，故只可在 IE5+ 才能识别；<code>link</code>标签作为 HTML 元素，不存在兼容性问题。</p>
+<p><strong>4.DOM可控性区别</strong><br>可以通过 JS 操作 DOM ，插入<code>link</code>标签来改变样式；由于 DOM 方法是基于文档的，无法使用<code>@import</code>的方式插入样式。</p>
+<p><strong>5.权重区别(该项有争议，下文将详解)</strong><br><code>link</code>引入的样式权重大于<code>@import</code>引入的样式。</p>
+<h4 id="争议"><a href="#争议" class="headerlink" title="争议"></a>争议</h4><p>不知从什么时候开始，当你在网上搜索<code>link</code>和<code>@import</code>的区别时，千篇一律的答案里就悄悄的多了一句“<code>link</code>引入的样式权重大于<code>@import</code>引入的样式”。<br>但是并没有一份答案，附带着对这句话的任何解释或实例。</p>
+<p>这句话究竟是什么意思，该怎么理解呢？</p>
+<p>发扬探索精神，我们不妨继续查阅资料。后来发现，还是有不少文章和帖子，对这句话表示质疑，进而自己写了 demo 去验证，验证的结果，确实无法与这句话相吻合。<br>而且，笔者也并未发现能清楚、正确、有理有据的解释这个结论到底对，还是不对的文章。</p>
+<p>那么这个结论，最初是从哪里来的，可能已经无从考证了。</p>
+<p>换个思维方式，不去争辩它的对错了，探索未果，我们就从这个结论的核心关键词<strong>“权重”</strong>出发，去研究它。</p>
+<p>说到“权重”，有必要再解释一下：CSS 中的权重，指的是选择器的优先级。</p>
+<p>CSS 选择器的权重高，即选择器的优先级高。<br>CSS 的优先级特性表现为，对同一 HTML 元素设置样式时，不同选择器的优先级不同，优先级低的样式将被高优先级的样式层叠掉。</p>
+<p>CSS 权重优先级顺序简单表示为：<br><code>!important &gt; 行内样式 &gt; ID &gt; 类、伪类、属性 &gt; 标签名 &gt; 继承 &gt; 通配符</code></p>
+<p>为了便于理解权重的计算方式，我们按以下方式进行数值假设分析：</p>
+<table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>权重</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>通配符</td>
+<td>0</td>
+</tr>
+<tr>
+<td>标签</td>
+<td>1</td>
+</tr>
+<tr>
+<td>类/伪类/属性</td>
+<td>10</td>
+</tr>
+<tr>
+<td>ID</td>
+<td>100</td>
+</tr>
+<tr>
+<td>行内样式</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>important</td>
+<td>1/0(无穷大)</td>
+</tr>
+</tbody></table>
+<p>再举实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style type&#x3D;&quot;text&#x2F;css&quot;&gt;</span><br><span class="line">        #myid &#123; &#x2F;* id选择器权重为100 *&#x2F;</span><br><span class="line">            background-color: pink;</span><br><span class="line">        &#125;</span><br><span class="line">        #divid .myspan input &#123; &#x2F;* 权重为 100 + 10 + 1 &#x3D; 111 *&#x2F;</span><br><span class="line">            background-color: yellow;</span><br><span class="line">        &#125;</span><br><span class="line">        input[type&#x3D;&quot;button&quot;] &#123; &#x2F;* 权重为 10 *&#x2F;</span><br><span class="line">            color: white !important; &#x2F;* !important权重为无穷大 *&#x2F;</span><br><span class="line">        &#125;</span><br><span class="line">        input.myclass &#123; &#x2F;* 此为标签指定式选择器，权重为 1 + 10 &#x3D; 11 *&#x2F;</span><br><span class="line">            color: black;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;divid&quot;&gt;</span><br><span class="line">        &lt;span class&#x3D;&quot;myspan&quot;&gt;</span><br><span class="line">            &lt;input type&#x3D;&quot;button&quot; id&#x3D;&quot;myid&quot; class&#x3D;&quot;myclass&quot; name&#x3D;&quot;myname&quot;</span><br><span class="line">                value&#x3D;&quot;点我&quot; style&#x3D;&quot; color: green;&quot;&gt;</span><br><span class="line">                &lt;!-- style样式的权重为1000 --&gt;</span><br><span class="line">        &lt;&#x2F;span&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
 
-<p>给定 target = <code>5</code>，返回 <code>true</code>。</p>
-<p>给定 target = <code>20</code>，返回 <code>false</code>。</p>
-<p><strong>限制：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0 &lt;&#x3D; n &lt;&#x3D; 1000</span><br><span class="line">0 &lt;&#x3D; m &lt;&#x3D; 1000</span><br></pre></td></tr></table></figure>
+<p>每个样式的权重值，都在实例中，以注释的形式标明。<br>根据权重值可知，最终，这个按钮的样式一定是，蓝色背景，白色字，结果如下图:<br><img src="https://images2015.cnblogs.com/blog/1066727/201611/1066727-20161129224033506-612012731.png" alt="img"></p>
+<p>存在<code>!important</code>时，不作他想，一定是权重最大的样式。</p>
+<p>既然我们了解了，CSS 中的权重是怎么回事，那回到主题，“<code>link</code>引入的样式权重大于<code>@import</code>引入的样式”，<br>难道 CSS 的引入方式也有权重吗？其实我们不必纠结它是否有权重之说，我们只需理论结合实际的去分析，各种情况下，结果如何即可。<br>现有如下3个css文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* green.css *&#x2F;</span><br><span class="line">div &#123;</span><br><span class="line">    background-color: green;</span><br><span class="line">    border: 3px solid red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;* yellow.css *&#x2F;</span><br><span class="line">div &#123;</span><br><span class="line">    background-color: yellow;</span><br><span class="line">    border: 3px solid black;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;* blue.css *&#x2F;</span><br><span class="line">@import url(&quot;green.css&quot;);</span><br><span class="line">div&#123;</span><br><span class="line">    background-color: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>实例1：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;!-- 实例1. link标签引入yellow.css，内联样式引入green.css --&gt;</span><br><span class="line">    &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;yellow.css&quot;&gt;</span><br><span class="line">    &lt;style type&#x3D;&quot;text&#x2F;css&quot;&gt;</span><br><span class="line">        @import url(&quot;green.css&quot;);</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div style&#x3D;&quot;width: 50px; height: 50px;&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;!-- 盒子为，绿色背景，红色边框，即green.css生效 --&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
 
+<p>实例1结果如下图：<br><img src="https://images2015.cnblogs.com/blog/1066727/201611/1066727-20161129224109084-1675788619.png" alt="img"></p>
+<p>实例2：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;!-- 实例2. 内联样式引入green.css，link标签引入yellow.css --&gt;</span><br><span class="line">    &lt;style type&#x3D;&quot;text&#x2F;css&quot;&gt;</span><br><span class="line">        @import url(&quot;green.css&quot;);</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">    &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;yellow.css&quot;&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div style&#x3D;&quot;width: 50px; height: 50px;&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;!-- 盒子为黄色背景，黑色边框，即yellow.css生效 --&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
 
-<h4 id="题解，坐标轴法"><a href="#题解，坐标轴法" class="headerlink" title="题解，坐标轴法"></a>题解，坐标轴法</h4><p>从左下角开始，假如比左下角大就同一行内比较，要是比左下角小就往上边找，重复此过程</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findNumberIn2DArray</span>(<span class="params">arr, target</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">            <span class="keyword">let</span> x = arr.length-<span class="number">1</span>, y = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (y &lt; arr[<span class="number">0</span>].length &amp;&amp; x &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (target == arr[x][y]) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (target &gt; arr[x][y]) &#123;</span><br><span class="line">                    y++;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    x--;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>实例2结果如下图：<br><img src="https://images2015.cnblogs.com/blog/1066727/201611/1066727-20161129224123287-1430983945.png" alt="img"></p>
+<p>对比实例1和实例2这两个正好相反的结果可知，<code>link</code>和<code>@import</code>并没有产生类似权重的效果，只是单纯的体现了CSS的层叠性，写在后面的样式，覆盖前面的样式。</p>
+<p>实例3：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;!-- 实例3. 内联样式引入green.css，内联样式中设置粉色背景 --&gt;</span><br><span class="line">    &lt;style type&#x3D;&quot;text&#x2F;css&quot;&gt;</span><br><span class="line">        @import url(&quot;green.css&quot;);</span><br><span class="line">        div &#123;</span><br><span class="line">            background-color: pink;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div style&#x3D;&quot;width: 50px; height: 50px;&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;!-- 盒子为粉色背景，红色边框，即green.css已生效，但背景色被内联样式层叠为粉色 --&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
 
+<p>实例3结果如下图：<br><img src="https://images2015.cnblogs.com/blog/1066727/201611/1066727-20161129224140756-131460175.png" alt="img"></p>
+<p>实例4：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;!-- 实例4. link标签引入blue.css，blue.css中引入green.css --&gt;</span><br><span class="line">    &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;blue.css&quot;&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div style&#x3D;&quot;width: 50px; height: 50px;&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;!-- 盒子为蓝色背景，红色边框，即green.css已生效，但背景色被blue.css层叠为蓝色 --&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
 
+<p>实例4结果如下图：<br><img src="https://images2015.cnblogs.com/blog/1066727/201611/1066727-20161129224157912-969350911.png" alt="img"></p>
+<p>分析实例3和实例4的结果可知：</p>
+<p>对于实例3，我们看到红色边框，证明内联样式中使用<code>@import</code>引入的<code>green.css</code>已经生效，但其背景样式被内联样式中的粉色背景层叠掉，这个现象表明，<code>@import</code>不只是如我们看到的那样，处于内联样式顶部，其被引入的样式，在结构上，也确实是被置于内联样式之前，所以内联样式才能够层叠掉它。</p>
+<p>同理，实例4中，在<code>link</code>标签引入的<code>blue.css</code>文件内，顶部同样存在<code>@import</code>引入的<code>green.css</code>，红色边框依然可以证明，<code>green.css</code>已经生效，但其背景样式被<code>blue.css</code>本身的蓝色背景层叠掉，<code>@import</code>引入的样式在<code>blue.css</code>中也是被置于它本身样式之前的。</p>
+<p>到此为止，我展开了大胆的猜想，“<code>link</code>引入的样式权重大于<code>@import</code>引入的样式”，这个结论的给出者，是想告诉大家：</p>
+<p>在<code>link</code>标签引入的 CSS 文件中，使用<code>@import</code>时需注意，如果已经存在相同样式，<code>@import</code>引入的这个样式将被该 CSS 文件本身的样式层叠掉，表现出<code>link</code>标签引入的样式权重大于<code>@import</code>引入的样式这样的直观效果。</p>
+<p>对于我设想的结论，似乎挺能说通的，毕竟这是实践出的结果。</p>
+<p>那些验证过此结论的前人，他们都是在一个 HTML 页面中，一前一后分别使用<code>link</code>和内联样式的<code>@import</code>去比较的，我在实例1和实例2中也是如此做的，并不能反推出“<code>link</code>引入的样式权重大于<code>@import</code>引入的样式”这个结论，所以，我不自量力的认为，这个结论其实最初只是丢了个已知条件而已。</p>
+<p>那么我们一起把这个结论重新梳理一下：在<code>link</code>标签引入的 CSS 文件中使用<code>@import</code>时，相同样式将被该 CSS 文件本身的样式层叠。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ps.首先感谢各种看官的阅读。笔者属于学习阶段，学识尚浅，虽然本文结论已得到笔者编码验证，但不排除笔者大脑短路、措辞有误的可能，有缘阅读到此处的都是真爱，希望诸位大拿、大牛、大仙、大圣、大神们不吝赐教，及时指正，避免诱导萌新误入歧途，再次向你们表达笔者的谢意！</span><br></pre></td></tr></table></figure>
+
+<h4 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h4><p>既然已经说了这么多，就顺便提一下关于<code>@import</code>使用时的其它细节。</p>
+<p>在《CSS权威指南》中写道：</p>
+<p><code>@import</code>一定要写在除<code>@charset</code>外的其他任何 CSS 规则之前，如果置于其它位置将会被浏览器忽略，而且，在<code>@import</code>之后如果存在其它样式，则<code>@import</code>之后的分号是必须书写，不可省略的。</p>
+<p>到此为止，似乎事情都弄清楚了，但是突然又有个疑点浮现出来：</p>
+<p>在讨论<strong>区别</strong>的时候，不是说加载页面时，<code>link</code>标签引入的 CSS 先于<code>@import</code>引入的 CSS 加载吗，那<code>link</code>标签引入的样式又怎会把<code>@import</code>引入的样式层叠掉呢？</p>
+<p>要回答这个问题，首先我们要一起明确一些有关浏览器的概念：</p>
+<p>浏览器执行过程可以简单分为加载、解析、渲染，这三个步骤。</p>
+<p><strong>加载</strong>：根据请求的URL进行域名解析，向服务器发送请求，接收响应文件（如 HTML、JS、CSS、图片等）。</p>
+<p><strong>解析</strong>：对加载到的资源（HTML、JS、CSS等）进行语法解析，构建相应的内部数据结构（比如HTML的DOM树，JS对象的属性表，CSS的样式规则等）。</p>
+<p><strong>渲染</strong>：构建渲染树，对各个元素进行位置计算、样式计算等，然后根据渲染树完成页面布局及绘制的过程（可以理解为“画”页面元素）。</p>
+<p>这几个过程不是完全孤立的，会有交叉，比如HTML加载后就会进行解析，然后拉取HTML中指定的CSS、JS等。`</p>
+<p>现在，我们应该已经了解了加载和渲染的概念，明白它们是两个不同的过程，那么对上文中抛出的疑问继续追问：</p>
+<p><code>link</code>先于<code>@import</code>加载，是不是也先于<code>@import</code>渲染呢？</p>
+<p>实际上，渲染的动作一般都会执行多次，最后一次渲染，一定是依据之前加载过的所有样式整合后的渲染树进行绘制页面的，已经被渲染过的页面元素，也会被重新渲染。</p>
+<p>那么我们就可以把<code>@import</code>这种导入 CSS 文件的方式理解成一种替换，CSS 解析引擎在对一个 CSS 文件进行解析时，如在文件顶部遇到<code>@import</code>，将被替换为该<code>@import</code>导入的 CSS 文件中的全部样式。</p>
+<p>峰回路转，柳暗花明，终于弄明白为何<code>@import</code>引入的样式，会被层叠掉了。其虽然后被加载，却会在加载完毕后置于样式表顶部，最终渲染时自然会被下面的同名样式层叠。</p>
+<p>至此为止，“<code>link</code>引入的样式权重大于<code>@import</code>引入的样式”这个结论，我终于为它圆了场。但愿此结论的作者，本意真如我的猜测，否则若是我多心而跑偏了的话，不敢想象这背后究竟隐藏着多大的秘密。</p>
+<h4 id="祖坟"><a href="#祖坟" class="headerlink" title="祖坟"></a>祖坟</h4><p>有些细心而专业的读者可能已经发现了，我用自己的思路和措辞，粗略的解释了有关 CSS 加载和渲染的知识，有些涉世未深的前端爱好者可能会一头雾水，无法作为系统学习的依据。这不打紧，出来混，祖坟总是要刨的，想要透彻的学习相关内容，进一步了解底层原理的学者，我早已为你备下了丰厚的见面礼~</p>
+<p>有关<code>link</code>和<code>@import</code>在性能分析方面的比较，国外的高手早在多年前就曾执过笔：</p>
+<p><a target="_blank" rel="noopener" href="https://www.stevesouders.com/blog/2009/04/09/dont-use-import/">爱好母语的请戳我</a>：<a target="_blank" rel="noopener" href="https://www.stevesouders.com/blog/2009/04/09/dont-use-import/">https://www.stevesouders.com/blog/2009/04/09/dont-use-import/</a><br><a target="_blank" rel="noopener" href="https://www.qianduan.net/high-performance-web-site-do-not-use-import/">阅读英语的请戳我</a>：<a target="_blank" rel="noopener" href="https://www.qianduan.net/high-performance-web-site-do-not-use-import/">https://www.qianduan.net/high-performance-web-site-do-not-use-import/</a></p>
+<p>有关浏览器内部工作原理的神作，也是几年前出自歪果仁大牛：</p>
+<p><a target="_blank" rel="noopener" href="https://kb.cnblogs.com/page/129756/">1 为普通话</a>：<a target="_blank" rel="noopener" href="https://kb.cnblogs.com/page/129756/">https://kb.cnblogs.com/page/129756/</a><br><a target="_blank" rel="noopener" href="http://taligarsiel.com/Projects/howbrowserswork1.htm">2 for English</a>：<a target="_blank" rel="noopener" href="http://taligarsiel.com/Projects/howbrowserswork1.htm">http://taligarsiel.com/Projects/howbrowserswork1.htm</a></p>
+<p>对知识有所渴望的你，赶快点击上面的传送门，相信你一定会有丰富的收获。</p>
+<h4 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h4><p>我喜欢读别人探究类的技术文章，不只是可以学习技术上的知识，更是可以学习别人探索的精神和思考问题的逻辑。或许已经有过不少前人如我一样，对本文的争议结论，有所质疑，前思后想过一番，得出了自己的见解，只是没有成文，或者没有发表而已。</p>
+<p>那么其他人呢，就只是单纯的复制结论或记忆结论么。</p>
+<p><strong>其实我觉得，在咱们这个领域，不求甚解可以，人云亦云不行。一句含有信息量的句子，进入大脑时，总得自己考虑考虑吧，不要让我们的大脑充当转发器，最不济，也得是个解析器吧。</strong></p>
+<p>转自博客园 奇拉米诺</p>
+<h1 id="由link和-import的区别引发的CSS渲染杂谈"><a href="#由link和-import的区别引发的CSS渲染杂谈" class="headerlink" title="由link和@import的区别引发的CSS渲染杂谈"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/KilerMino/p/6115803.html">由link和@import的区别引发的CSS渲染杂谈</a></h1>
                 
             </div>
             <hr/>
@@ -510,7 +602,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wtyx-2018.github.io/my-blog/my-blog/2021/05/21/%E5%89%91%E6%8C%87%20Offer%2004.%20%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE/">https://wtyx-2018.github.io/my-blog/my-blog/2021/05/21/%E5%89%91%E6%8C%87%20Offer%2004.%20%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE/</a>
+                    <a href="https://wtyx-2018.github.io/my-blog/my-blog/2021/05/22/link%E5%92%8C@import%E7%9A%84%E5%8C%BA%E5%88%AB/">https://wtyx-2018.github.io/my-blog/my-blog/2021/05/22/link%E5%92%8C@import%E7%9A%84%E5%8C%BA%E5%88%AB/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -548,8 +640,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/my-blog/tags/algorithm/">
-                                    <span class="chip bg-color">algorithm</span>
+                                <a href="/my-blog/tags/css/">
+                                    <span class="chip bg-color">css</span>
                                 </a>
                             
                         </div>
@@ -719,17 +811,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/my-blog/2021/05/22/%E4%BD%BF%E7%94%A8display%EF%BC%9Anone%E5%92%8Cvisibility%EF%BC%9Ahidden%E9%9A%90%E8%97%8F%E7%9A%84%E5%8C%BA%E5%88%AB/">
+                <a href="/my-blog/2021/05/22/link%E5%92%8C@import%E7%9A%84%E5%8C%BA%E5%88%AB/">
                     <div class="card-image">
                         
                         
-                        <img src="/my-blog/medias/featureimages/1.jpg" class="responsive-img" alt="使用display：none和visibility：hidden隐藏的区别">
+                        <img src="/my-blog/medias/featureimages/22.jpg" class="responsive-img" alt="link和@import的区别">
                         
-                        <span class="card-title">使用display：none和visibility：hidden隐藏的区别</span>
+                        <span class="card-title">link和@import的区别</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -739,9 +832,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-22
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -750,6 +843,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -768,13 +862,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/my-blog/2021/05/21/%E5%89%91%E6%8C%87%20Offer%2003.%20%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/">
+                <a href="/my-blog/2021/05/22/%E4%BD%BF%E7%94%A8display%EF%BC%9Anone%E5%92%8Cvisibility%EF%BC%9Ahidden%E9%9A%90%E8%97%8F%E7%9A%84%E5%8C%BA%E5%88%AB/">
                     <div class="card-image">
                         
                         
-                        <img src="/my-blog/medias/featureimages/22.jpg" class="responsive-img" alt="数组中重复的数字">
+                        <img src="/my-blog/medias/featureimages/1.jpg" class="responsive-img" alt="使用display：none和visibility：hidden隐藏的区别">
                         
-                        <span class="card-title">数组中重复的数字</span>
+                        <span class="card-title">使用display：none和visibility：hidden隐藏的区别</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -785,7 +879,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-21
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-22
                             </span>
                         <span class="publish-author">
                             
@@ -798,8 +892,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/my-blog/tags/algorithm/">
-                        <span class="chip bg-color">algorithm</span>
+                    <a href="/my-blog/tags/css/">
+                        <span class="chip bg-color">css</span>
                     </a>
                     
                 </div>
