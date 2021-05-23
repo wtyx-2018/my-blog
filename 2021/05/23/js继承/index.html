@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Js中的防抖与节流, web前端">
+    <meta name="keywords" content="JS继承, web前端">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Js中的防抖与节流 | 武藤游戏の博客</title>
+    <title>JS继承 | 武藤游戏の博客</title>
     <link rel="icon" type="image/png" href="/my-blog/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/my-blog/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/my-blog/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/my-blog/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Js中的防抖与节流</h1>
+                    <h1 class="description center-align post-title">JS继承</h1>
                 </div>
             </div>
         </div>
@@ -447,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-05-03
+                    2021-05-23
                 </div>
                 
 
@@ -468,100 +468,60 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Js中的防抖与节流"><a href="#Js中的防抖与节流" class="headerlink" title="Js中的防抖与节流"></a>Js中的防抖与节流</h1><p>防抖(debounce)和节流(throttle)两词其实并非计算机领域的原生词语。追根溯源，防抖一词来自于弱电领域，指代的是消除外界对于开关扰动的技术。而节流来自于流体力学，指代的是限定流体流量的一种技术。由于JavaScript拥有事件驱动的特性，为避免事件频繁触发导致性能的损耗，防抖和节流这两种技术在JavaScript中亦被广泛应用。</p>
-<h2 id="为什么需要防抖和节流？"><a href="#为什么需要防抖和节流？" class="headerlink" title="为什么需要防抖和节流？"></a>为什么需要防抖和节流？</h2><p>日常与浏览器打交道比较多的前端开发者对于浏览器的各种事件想必都不会陌生，我们会针对某一个特定的事件绑定对应的响应函数，在事件被触发时让浏览器自动调用该函数。</p>
-<table>
-<thead>
-<tr>
-<th><code>1 2 3 4 5 </code></th>
-<th><code>function onResizeHandler() &#123;    // do something on resize &#125; window.addEventListener(&#39;resize&#39;, onResizeHandler); </code></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<p>如果只是一些触发频率很低的事件，那么上面的代码并没有什么问题。但是如果像resize这样可能在短时间内被频繁触发的事件（比如click/keydown/touchStart等），我们不去做任何的处理的话，可能导致事件的响应函数在短时间内被大量的触发，造成浏览器卡顿，伤害用户体验。</p>
-<p>而节流和防抖一个很经典的应用场景就是去控制我们的事件的触发，节省浏览器开销。</p>
-<h2 id="什么是防抖"><a href="#什么是防抖" class="headerlink" title="什么是防抖"></a>什么是防抖</h2><p>JavaScript中的防抖指的是只有在x ms内没有调用该函数，才会真正调用该函数。如下图</p>
-<p><img src="https://hateonion.me/posts/19jan02/6i7gtoy0gm.jpg" alt="img"></p>
-<p>该图上方是事件触发的次数，下方是响应函数触发的次数，可以发现在事件大量被触发时(色块密集)，响应函数并没有被触发。当事件停止触发一段事件后(三个色块的时间间隔)后，响应函数才会被真正的触发。</p>
-<p>如果你想自己试试上面的例子，可以访问这个 <a target="_blank" rel="noopener" href="https://codepen.io/dcorb/pen/KVxGqN">codePen</a> 。</p>
-<h2 id="防抖的简单实现"><a href="#防抖的简单实现" class="headerlink" title="防抖的简单实现"></a>防抖的简单实现</h2><p>防抖函数其实是一个高阶函数，接收一个函数和防抖事件作为参数，返回值为防抖处理的函数。</p>
-<p>的实现其实很简单，我们需要的是是一个定时器，如果在定时器的定时结束前，响应函数被触发的话则重置这个定时器的时间。</p>
-<table>
-<thead>
-<tr>
-<th><code>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25</code></th>
-<th><code>function debounce(fn, wait, leading=false) &#123;  /** @type &#123;number&#125; */  let timer;  /** @type &#123;number&#125; */  let lastCallTime;  /** @type &#123;boolean&#125; */  let isInvoked = false;  return function debounced(...args) &#123;    const context = this;    const thisCallTime = Date.now();    if(leading) &#123;      if(!isInvoked) &#123;        fn.apply(context, args);        isInvoked = true;      &#125;      if(thisCallTime - lastCallTime &gt;= wait) &#123;        fn.apply(context, args);      &#125;      lastCallTime = Date.now();      return;    &#125;    clearTimeout(timer);    timer = setTimeout(() =&gt; fn.apply(context, args), wait);  &#125; &#125; </code></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<p>需要注意的是，上面的函数添加了leading参数。传统的防抖函数响应函数第一次触发也需要等待x ms，使用该参数可让响应函数立即进行触发。</p>
-<h2 id="防抖的应用场景"><a href="#防抖的应用场景" class="headerlink" title="防抖的应用场景"></a>防抖的应用场景</h2><p>防抖函数的应用场景很多，比如我们需要得到浏览器窗口resize前后窗口的大小。</p>
-<table>
-<thead>
-<tr>
-<th><code>1 2 3 </code></th>
-<th><code>function onResizeHandler() &#123;    return  </code>${window.width()} + ${window.height()}<code>; &#125; </code></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<p>当浏览器窗口被拖动的时候，这个响应函数便会触发多次，但是我们实际上想得到的只有resize前和resize后的窗口大小。这时候使用防抖便能很好的解决这个问题。</p>
-<p>另一个很经典的使用场景是表单验证，往往表单验证是和input框的onChange绑定在一起的。</p>
-<table>
-<thead>
-<tr>
-<th><code>1 2 3 </code></th>
-<th><code>function onChange(e) &#123;    validate(e.target.value); &#125; </code></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<p>但是如果直接绑定onChange事件，用户的每个字符输入都会触发校验，可能会造成输入卡顿或者给用户抛出错误的校验失败信息，伤害用户体验。这时候如果我们给onChange绑定的是一个经过防抖处理的响应函数，便能很好的避免这种问题了。</p>
-<h2 id="什么是节流"><a href="#什么是节流" class="headerlink" title="什么是节流"></a>什么是节流</h2><p>节流指的是在x ms内，某一个函数只能被触发一次。</p>
-<p><img src="https://hateonion.me/posts/19jan02/ye2dn7sjlj.jpg" alt="img"></p>
-<h2 id="节流的简单实现"><a href="#节流的简单实现" class="headerlink" title="节流的简单实现"></a>节流的简单实现</h2><p>节流本质上是通过记录本次调用时间和上次调用时间来实现的。</p>
-<table>
-<thead>
-<tr>
-<th><code>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16</code></th>
-<th><code>function throttle(fn, threshold)&#123; let lastCallTime;  let isInvoked = false;  return function throttled(...args) &#123;    const thisCallTime = Date.now();    if(!isInvoked) &#123;      fn.apply(this, args);      lastCallTime = Date.now();      isInvoked = true;    &#125;    if(thisCallTime - lastCallTime &gt;= threshold) &#123;      fn.apply(this, args);      lastCallTime = Date.now();    &#125;  &#125; &#125; </code></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id="节流的应用场景"><a href="#节流的应用场景" class="headerlink" title="节流的应用场景"></a>节流的应用场景</h2><p>节流有一些很经典的应用场景</p>
-<p>比如对于一个Button短时间内进行多次点击，可能没有必要触发多次handler，这时候就可以对click的响应函数进行节流处理。</p>
-<p>或者一个使用键盘控制的飞机大战的游戏，子弹的射出速度是有限制的，不管你在短时间内触发多少次发射按键，永远只会有一枚子弹被发射。</p>
-<p>再或者是在实现无限滚动时，需要去监测内容底部是否已经接近window底部，如果是的话就需要去请求新的内容。关于无限滚动，有一个很棒的 <a target="_blank" rel="noopener" href="https://codepen.io/dcorb/pen/eJLMxa">codePen</a> demo。</p>
-<h2 id="requestAnimationFrame"><a href="#requestAnimationFrame" class="headerlink" title="requestAnimationFrame"></a>requestAnimationFrame</h2><p>在最后要提一下requestAnimationFrame这个浏览器API。这个函数可以理解为 <code>throttle(handler, 16)</code> (16为60fps计算得出) 的浏览器原生实现。当然浏览器不仅做了简单的throttle，还有一些分片和空闲thread监测功能，来保证被这个函数处理的函数能满足每秒60帧的要求。</p>
-<p>在某些情况下我们也可以调用这个函数来完成类似throttle的功能。但是需要注意的是</p>
-<ul>
-<li>你需要手动触发requestAnimationFrame，但是throttle一旦被设置好后是自动触发的</li>
-<li>requestAnimationFrame不支持IE9及以下</li>
-<li>requestAnimationFrame是一个浏览器API，nodejs无法使用。</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li>防抖是指某个函数在空闲x ms后才被调用，如果该段时间内该函数被触发，则重置计时器。常用场景有resize事件或者input框的onChang事件</li>
-<li>节流是指某个函数在x ms内只能被触发一次。常用场景有button的click事件或者键盘事件等。</li>
-<li>requestAnimationFrame是浏览器提供的API，提供了throttle(handler,16)类似的功能但是会有更多浏览器级别的优化来保证每秒16帧的渲染结果。</li>
-</ul>
+                <h1 id="js继承"><a href="#js继承" class="headerlink" title="js继承"></a>js继承</h1><p>这里是父类</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">Father</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">            <span class="comment">//属性</span></span><br><span class="line">            <span class="built_in">this</span>.name = name || <span class="string">&#x27;父亲&#x27;</span></span><br><span class="line">            <span class="comment">//实例方法</span></span><br><span class="line">            <span class="built_in">this</span>.sleep = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&#x27;正在睡觉&#x27;</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//原型方法</span></span><br><span class="line">        Father.prototype.eat = <span class="function"><span class="keyword">function</span> (<span class="params">food</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&#x27;正在吃：&#x27;</span> + food);</span><br><span class="line">        &#125;</span><br><span class="line"><span class="keyword">let</span> father = Father()<span class="comment">//父类的实例</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>1.原型链继承</strong></p>
+<p>父类的实例作为子类的原型</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Son</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">Son.prototype = <span class="keyword">new</span> Father(<span class="string">&#x27;儿子&#x27;</span>);</span><br><span class="line"><span class="keyword">let</span> son = <span class="keyword">new</span> Son();</span><br></pre></td></tr></table></figure>
+
+
+
+<p>优点：易于实现，写法简单，父类的新增的实例与属性子类都能访问</p>
+<p>缺点：可以在子类中增加实例属性，如果要新增加原型属性和方法需要在new 父类构造函数的后面</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Son</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.age = <span class="number">12</span></span><br><span class="line">            <span class="built_in">this</span>.sleep = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">&#x27;重写的方法&#x27;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//这些东西就和父类没什么关系了，但是要写在父类里都能用</span></span><br></pre></td></tr></table></figure>
+
+<p>无法实现多继承</p>
+<p>创建子类实例时，不能向父类构造函数中传参数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> son = <span class="keyword">new</span> Son(<span class="string">&#x27;儿子&#x27;</span>);<span class="comment">//这样就无效，son.name-&gt;父亲</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>2.借用构造函数继承（伪造对象、经典继承）</strong></p>
+<p>复制父类的实例属性给子类</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">daughter</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    Father.call(<span class="built_in">this</span>)</span><br><span class="line">    <span class="built_in">this</span>.name = name||<span class="string">&#x27;闺女&#x27;</span>   </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> emily = <span class="keyword">new</span> Daughter(<span class="string">&#x27;emily&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>优点：解决了子类构造函数向父类构造函数中传递参数</p>
+<p>可以实现多继承（多继承是指 一<strong>个子类继承多个父类</strong>,call或者apply多个父类）</p>
+<p>缺点：方法都在构造函数中定义，无法复用</p>
+<p>不能继承原型属性/方法，只能继承父类的实例属性和方法</p>
+<p><strong>3.实例继承（原型式继承）</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Mather</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> instance = <span class="keyword">new</span> Father();</span><br><span class="line">    instance.name = name||<span class="string">&#x27;妈妈&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>优点：不限制调用方式，简单，易实现，</p>
+<p>缺点：不能多继承</p>
+<p><strong>4.组合式继承</strong></p>
+<p>调用父类构造函数，继承父类的属性，通过将父类实例作为子类原型，实现函数复用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">People</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = name || <span class="string">&#x27;wangxiao&#x27;</span></span><br><span class="line">  <span class="built_in">this</span>.age = age || <span class="number">27</span></span><br><span class="line">&#125;</span><br><span class="line">People.prototype.eat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">this</span>.name + <span class="built_in">this</span>.age + <span class="string">&#x27;eat sleep&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Woman</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">  People.call(<span class="built_in">this</span>,name,age)</span><br><span class="line">&#125;</span><br><span class="line">Woman.prototype = <span class="keyword">new</span> People();</span><br><span class="line">Woman.prototype.constructor = Woman;</span><br><span class="line"><span class="keyword">let</span> wonmanObj = <span class="keyword">new</span> Woman(ren,<span class="number">27</span>);</span><br><span class="line">wonmanObj.eat(); </span><br></pre></td></tr></table></figure>
+
+<p>优点：函数可以复用</p>
+<p>缺点：由于调用了两次父类，所以产生了两份实例</p>
+<p><strong>5.寄生组合继承</strong></p>
+<p>通过寄生的方式来修复组合式继承的不足，完美的实现继承</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">People</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = name || <span class="string">&#x27;wangxiao&#x27;</span></span><br><span class="line">  <span class="built_in">this</span>.age = age || <span class="number">27</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//父类方法</span></span><br><span class="line">People.prototype.eat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">this</span>.name + <span class="built_in">this</span>.age + <span class="string">&#x27;eat sleep&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//子类</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Woman</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">  <span class="comment">//继承父类属性</span></span><br><span class="line">  People.call(<span class="built_in">this</span>,name,age)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//继承父类方法</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 创建空类</span></span><br><span class="line">  <span class="keyword">let</span> Super = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">  Super.prototype = People.prototype;</span><br><span class="line">  <span class="comment">//父类的实例作为子类的原型</span></span><br><span class="line">  Woman.prototype = <span class="keyword">new</span> Super();</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="comment">//修复构造函数指向问题</span></span><br><span class="line">Woman.prototype.constructor = Woman;</span><br><span class="line"><span class="keyword">let</span> womanObj = <span class="keyword">new</span> Woman();</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>6.es6继承</strong></p>
+<p>代码量少，易懂</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//class 相当于es5中构造函数</span></span><br><span class="line"><span class="comment">//class中定义方法时，前后不能加function，全部定义在class的protopyte属性中</span></span><br><span class="line"><span class="comment">//class中定义的所有方法是不可枚举的</span></span><br><span class="line"><span class="comment">//class中只能定义方法，不能定义对象，变量等</span></span><br><span class="line"><span class="comment">//class和方法内默认都是严格模式</span></span><br><span class="line"><span class="comment">//es5中constructor为隐式属性</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">name=<span class="string">&#x27;wang&#x27;</span>,age=<span class="string">&#x27;27&#x27;</span></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.name = name;</span><br><span class="line">    <span class="built_in">this</span>.age = age;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="title">eat</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;<span class="built_in">this</span>.name&#125;</span> <span class="subst">$&#123;<span class="built_in">this</span>.age&#125;</span> eat food`</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//继承父类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Woman</span> <span class="keyword">extends</span> <span class="title">People</span></span>&#123; </span><br><span class="line">   <span class="function"><span class="title">constructor</span>(<span class="params">name = <span class="string">&#x27;ren&#x27;</span>,age = <span class="string">&#x27;27&#x27;</span></span>)</span>&#123; </span><br><span class="line">     <span class="comment">//继承父类属性</span></span><br><span class="line">     <span class="built_in">super</span>(name, age); </span><br><span class="line">   &#125; </span><br><span class="line">    <span class="function"><span class="title">eat</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">     <span class="comment">//继承父类方法</span></span><br><span class="line">      <span class="built_in">super</span>.eat() </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">let</span> wonmanObj=<span class="keyword">new</span> Woman(<span class="string">&#x27;xiaoxiami&#x27;</span>); </span><br><span class="line">wonmanObj.eat();</span><br></pre></td></tr></table></figure>
+
+<p><strong>ES5继承和ES6继承的区别</strong></p>
+<p>es5继承首先是在子类中创建自己的this指向，最后将方法添加到this中</p>
+<p>Child.prototype=new Parent() || Parent.apply(this) || Parent.call(this)</p>
+<p>es6继承是使用关键字先创建父类的实例对象this，最后在子类class中修改this</p>
 
                 
             </div>
@@ -588,7 +548,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wtyx-2018.github.io/my-blog/my-blog/2021/05/03/Js%E4%B8%AD%E7%9A%84%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">https://wtyx-2018.github.io/my-blog/my-blog/2021/05/03/Js%E4%B8%AD%E7%9A%84%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/</a>
+                    <a href="https://wtyx-2018.github.io/my-blog/my-blog/2021/05/23/js%E7%BB%A7%E6%89%BF/">https://wtyx-2018.github.io/my-blog/my-blog/2021/05/23/js%E7%BB%A7%E6%89%BF/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -797,17 +757,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/my-blog/2021/05/05/New/">
+                <a href="/my-blog/2021/05/23/js%E7%BB%A7%E6%89%BF/">
                     <div class="card-image">
                         
                         
-                        <img src="/my-blog/medias/featureimages/9.jpg" class="responsive-img" alt="跨域问题">
+                        <img src="/my-blog/medias/featureimages/1.jpg" class="responsive-img" alt="JS继承">
                         
-                        <span class="card-title">跨域问题</span>
+                        <span class="card-title">JS继承</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -817,9 +778,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-05
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-23
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -828,11 +789,12 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/my-blog/tags/Cross-domain-problems/">
-                        <span class="chip bg-color">Cross domain problems</span>
+                    <a href="/my-blog/tags/JavaScript/">
+                        <span class="chip bg-color">JavaScript</span>
                     </a>
                     
                 </div>
@@ -846,13 +808,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/my-blog/2021/05/01/%E5%8E%9F%E5%9E%8B&%E5%8E%9F%E5%9E%8B%E9%93%BE&%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/">
+                <a href="/my-blog/2021/05/23/JS%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D%E7%9A%84%E5%AE%9E%E7%8E%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/my-blog/medias/featureimages/13.jpg" class="responsive-img" alt="原型&amp;原型链&amp;构造函数">
+                        <img src="/my-blog/medias/featureimages/13.jpg" class="responsive-img" alt="JS深浅拷贝">
                         
-                        <span class="card-title">原型&amp;原型链&amp;构造函数</span>
+                        <span class="card-title">JS深浅拷贝</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -863,7 +825,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-23
                             </span>
                         <span class="publish-author">
                             
