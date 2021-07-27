@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="JS继承, web前端">
+    <meta name="keywords" content="数字转汉语, web前端">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>JS继承 | 武藤游戏の博客</title>
+    <title>数字转汉语 | 武藤游戏の博客</title>
     <link rel="icon" type="image/png" href="/my-blog/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/my-blog/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/my-blog/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/my-blog/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">JS继承</h1>
+                    <h1 class="description center-align post-title">数字转汉语</h1>
                 </div>
             </div>
         </div>
@@ -447,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-05-23
+                    2021-06-23
                 </div>
                 
 
@@ -468,60 +468,12 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="js继承"><a href="#js继承" class="headerlink" title="js继承"></a>js继承</h1><p>这里是父类</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">Father</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">            <span class="comment">//属性</span></span><br><span class="line">            <span class="built_in">this</span>.name = name || <span class="string">&#x27;父亲&#x27;</span></span><br><span class="line">            <span class="comment">//实例方法</span></span><br><span class="line">            <span class="built_in">this</span>.sleep = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&#x27;正在睡觉&#x27;</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//原型方法</span></span><br><span class="line">        Father.prototype.eat = <span class="function"><span class="keyword">function</span> (<span class="params">food</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&#x27;正在吃：&#x27;</span> + food);</span><br><span class="line">        &#125;</span><br><span class="line"><span class="keyword">let</span> father = Father()<span class="comment">//父类的实例</span></span><br></pre></td></tr></table></figure>
+                <p>之前面试好未来前端实习的一道题目，让实现一个数字转化成汉语的一个函数，之前写过转成罗马数字的，用同样的方法当时写的很差，返回一个字符串‘千千千百百百’这种。</p>
+<p>后来想到把数字转成字符串然后处理，每次处理掉最前边的一位，先是写个保存汉字零到十的数组，每次取出的头一位和他组合，根据长度加上对应的单位，然后裁剪掉进行后边的处理</p>
+<p>要注意的地方有二和两的区别，还有零的出现等等细节。</p>
+<p>代码整体写的不咋地，其实可者加一些条件，还有对函数再封装一下这样能实现很大的数都能处理，但现在实现的只有小于一亿的，我的代码写的不太好等以后再改进吧。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">let</span> n = <span class="number">200000</span></span><br><span class="line"><span class="keyword">const</span> change = <span class="function">(<span class="params">n</span>) =&gt;</span> &#123;</span><br><span class="line">    n = n.toString();</span><br><span class="line">    <span class="keyword">if</span> (n.length &lt; <span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span> (n.length &gt; <span class="number">5</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> n1 = n.slice(<span class="number">0</span>, n.length - <span class="number">4</span>)</span><br><span class="line">        <span class="keyword">let</span> n2 = n.slice(n.length - <span class="number">4</span>, n.length)</span><br><span class="line">        <span class="keyword">if</span> (n1[n1.length - <span class="number">1</span>] == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> str(n1) + <span class="string">&#x27;万零&#x27;</span> + str(n2)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> str(n1) + <span class="string">&#x27;万&#x27;</span> + str(n2)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> str(n)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> str = <span class="function">(<span class="params">n</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> b = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">const</span> arr1 = [<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;十&#x27;</span>, <span class="string">&#x27;百&#x27;</span>, <span class="string">&#x27;千&#x27;</span>, <span class="string">&#x27;万&#x27;</span>]</span><br><span class="line">    <span class="keyword">const</span> arr2 = [<span class="string">&#x27;零&#x27;</span>, <span class="string">&#x27;一&#x27;</span>, <span class="string">&#x27;两&#x27;</span>, <span class="string">&#x27;三&#x27;</span>, <span class="string">&#x27;四&#x27;</span>, <span class="string">&#x27;五&#x27;</span>, <span class="string">&#x27;六&#x27;</span>, <span class="string">&#x27;七&#x27;</span>, <span class="string">&#x27;八&#x27;</span>, <span class="string">&#x27;九&#x27;</span>]</span><br><span class="line">    <span class="keyword">let</span> a = arr2[<span class="built_in">Number</span>(n.slice(<span class="number">0</span>, <span class="number">1</span>))]</span><br><span class="line">    b = (n.slice(<span class="number">0</span>, <span class="number">1</span>) == <span class="number">0</span>) ? <span class="string">&#x27;&#x27;</span> : arr1[n.length - <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">let</span> res = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    res = b + a + res;</span><br><span class="line">    <span class="keyword">while</span> (n.length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">        n = n.substr(<span class="number">1</span>)</span><br><span class="line">        a = arr2[<span class="built_in">Number</span>(n.slice(<span class="number">0</span>, <span class="number">1</span>))]</span><br><span class="line">        b = (n.slice(<span class="number">0</span>, <span class="number">1</span>) == <span class="number">0</span>) ? <span class="string">&#x27;&#x27;</span> : arr1[n.length - <span class="number">1</span>]</span><br><span class="line">        res = b + a + res;</span><br><span class="line">    &#125;</span><br><span class="line">    res = res.split(<span class="string">&#x27;&#x27;</span>).reverse().join(<span class="string">&quot;&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> (res[res.length - <span class="number">1</span>] == <span class="string">&#x27;两&#x27;</span>) &#123;</span><br><span class="line">        res = res.slice(<span class="number">0</span>, res.length - <span class="number">1</span>) + <span class="string">&#x27;二&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (res[res.length - <span class="number">1</span>] == <span class="string">&#x27;零&#x27;</span>) &#123;</span><br><span class="line">        res = res.slice(<span class="number">0</span>, res.length - <span class="number">1</span>) + <span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> final = <span class="function">(<span class="params">n</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> res = change(n)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (res[<span class="number">0</span>] == <span class="string">&#x27;一&#x27;</span> &amp;&amp; res[<span class="number">1</span>] == <span class="string">&quot;十&quot;</span>) &#123;</span><br><span class="line">        res = res.slice(<span class="number">1</span>, res.length)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (res.length &gt; <span class="number">2</span>) &#123;</span><br><span class="line">        res = res.split(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; res.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (res[i] == <span class="string">&quot;零&quot;</span> &amp;&amp; res[i + <span class="number">1</span>] == <span class="string">&quot;零&quot;</span>) &#123;</span><br><span class="line">                res[i] = <span class="string">&#x27;&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (res[i] == <span class="string">&#x27;两&#x27;</span> &amp;&amp; res[i + <span class="number">1</span>] == <span class="string">&#x27;十&#x27;</span>) &#123;</span><br><span class="line">                res[i] = <span class="string">&quot;二&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res.join(<span class="string">&quot;&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(final(n));</span><br></pre></td></tr></table></figure>
 
-
-
-<p><strong>1.原型链继承</strong></p>
-<p>父类的实例作为子类的原型</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Son</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">Son.prototype = <span class="keyword">new</span> Father(<span class="string">&#x27;儿子&#x27;</span>);</span><br><span class="line"><span class="keyword">let</span> son = <span class="keyword">new</span> Son();</span><br></pre></td></tr></table></figure>
-
-
-
-<p>优点：易于实现，写法简单，父类的新增的实例与属性子类都能访问</p>
-<p>缺点：可以在子类中增加实例属性，如果要新增加原型属性和方法需要在new 父类构造函数的后面</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Son</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.age = <span class="number">12</span></span><br><span class="line">            <span class="built_in">this</span>.sleep = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">&#x27;重写的方法&#x27;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//这些东西就和父类没什么关系了，但是要写在父类里都能用</span></span><br></pre></td></tr></table></figure>
-
-<p>无法实现多继承</p>
-<p>创建子类实例时，不能向父类构造函数中传参数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> son = <span class="keyword">new</span> Son(<span class="string">&#x27;儿子&#x27;</span>);<span class="comment">//这样就无效，son.name-&gt;父亲</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>2.借用构造函数继承（伪造对象、经典继承）</strong></p>
-<p>复制父类的实例属性给子类</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">daughter</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    Father.call(<span class="built_in">this</span>)</span><br><span class="line">    <span class="built_in">this</span>.name = name||<span class="string">&#x27;闺女&#x27;</span>   </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> emily = <span class="keyword">new</span> Daughter(<span class="string">&#x27;emily&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>优点：解决了子类构造函数向父类构造函数中传递参数</p>
-<p>可以实现多继承（多继承是指 一<strong>个子类继承多个父类</strong>,call或者apply多个父类）</p>
-<p>缺点：方法都在构造函数中定义，无法复用</p>
-<p>不能继承原型属性/方法，只能继承父类的实例属性和方法</p>
-<p><strong>3.实例继承（原型式继承）</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Mather</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> instance = <span class="keyword">new</span> Father();</span><br><span class="line">    instance.name = name||<span class="string">&#x27;妈妈&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>优点：不限制调用方式，简单，易实现，</p>
-<p>缺点：不能多继承</p>
-<p><strong>4.组合式继承</strong></p>
-<p>调用父类构造函数，继承父类的属性，通过将父类实例作为子类原型，实现函数复用</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">People</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = name || <span class="string">&#x27;wangxiao&#x27;</span></span><br><span class="line">  <span class="built_in">this</span>.age = age || <span class="number">27</span></span><br><span class="line">&#125;</span><br><span class="line">People.prototype.eat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">this</span>.name + <span class="built_in">this</span>.age + <span class="string">&#x27;eat sleep&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Woman</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">  People.call(<span class="built_in">this</span>,name,age)</span><br><span class="line">&#125;</span><br><span class="line">Woman.prototype = <span class="keyword">new</span> People();</span><br><span class="line">Woman.prototype.constructor = Woman;</span><br><span class="line"><span class="keyword">let</span> wonmanObj = <span class="keyword">new</span> Woman(ren,<span class="number">27</span>);</span><br><span class="line">wonmanObj.eat(); </span><br></pre></td></tr></table></figure>
-
-<p>优点：函数可以复用</p>
-<p>缺点：由于调用了两次父类，所以产生了两份实例</p>
-<p><strong>5.寄生组合继承</strong></p>
-<p>通过寄生的方式来修复组合式继承的不足，完美的实现继承</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">People</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = name || <span class="string">&#x27;wangxiao&#x27;</span></span><br><span class="line">  <span class="built_in">this</span>.age = age || <span class="number">27</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//父类方法</span></span><br><span class="line">People.prototype.eat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">this</span>.name + <span class="built_in">this</span>.age + <span class="string">&#x27;eat sleep&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//子类</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Woman</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">  <span class="comment">//继承父类属性</span></span><br><span class="line">  People.call(<span class="built_in">this</span>,name,age)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//继承父类方法</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 创建空类</span></span><br><span class="line">  <span class="keyword">let</span> Super = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">  Super.prototype = People.prototype;</span><br><span class="line">  <span class="comment">//父类的实例作为子类的原型</span></span><br><span class="line">  Woman.prototype = <span class="keyword">new</span> Super();</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="comment">//修复构造函数指向问题</span></span><br><span class="line">Woman.prototype.constructor = Woman;</span><br><span class="line"><span class="keyword">let</span> womanObj = <span class="keyword">new</span> Woman();</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>6.es6继承</strong></p>
-<p>代码量少，易懂</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//class 相当于es5中构造函数</span></span><br><span class="line"><span class="comment">//class中定义方法时，前后不能加function，全部定义在class的protopyte属性中</span></span><br><span class="line"><span class="comment">//class中定义的所有方法是不可枚举的</span></span><br><span class="line"><span class="comment">//class中只能定义方法，不能定义对象，变量等</span></span><br><span class="line"><span class="comment">//class和方法内默认都是严格模式</span></span><br><span class="line"><span class="comment">//es5中constructor为隐式属性</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">name=<span class="string">&#x27;wang&#x27;</span>,age=<span class="string">&#x27;27&#x27;</span></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.name = name;</span><br><span class="line">    <span class="built_in">this</span>.age = age;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="title">eat</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;<span class="built_in">this</span>.name&#125;</span> <span class="subst">$&#123;<span class="built_in">this</span>.age&#125;</span> eat food`</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//继承父类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Woman</span> <span class="keyword">extends</span> <span class="title">People</span></span>&#123; </span><br><span class="line">   <span class="function"><span class="title">constructor</span>(<span class="params">name = <span class="string">&#x27;ren&#x27;</span>,age = <span class="string">&#x27;27&#x27;</span></span>)</span>&#123; </span><br><span class="line">     <span class="comment">//继承父类属性</span></span><br><span class="line">     <span class="built_in">super</span>(name, age); </span><br><span class="line">   &#125; </span><br><span class="line">    <span class="function"><span class="title">eat</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">     <span class="comment">//继承父类方法</span></span><br><span class="line">      <span class="built_in">super</span>.eat() </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">let</span> wonmanObj=<span class="keyword">new</span> Woman(<span class="string">&#x27;xiaoxiami&#x27;</span>); </span><br><span class="line">wonmanObj.eat();</span><br></pre></td></tr></table></figure>
-
-<p><strong>ES5继承和ES6继承的区别</strong></p>
-<p>es5继承首先是在子类中创建自己的this指向，最后将方法添加到this中</p>
-<p>Child.prototype=new Parent() || Parent.apply(this) || Parent.call(this)</p>
-<p>es6继承是使用关键字先创建父类的实例对象this，最后在子类class中修改this</p>
 
                 
             </div>
@@ -548,7 +500,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wtyx-2018.github.io/my-blog/my-blog/2021/05/23/js%E7%BB%A7%E6%89%BF/">https://wtyx-2018.github.io/my-blog/my-blog/2021/05/23/js%E7%BB%A7%E6%89%BF/</a>
+                    <a href="https://wtyx-2018.github.io/my-blog/my-blog/2021/06/23/%E6%95%B0%E5%AD%97%E8%BD%AC%E6%B1%89%E8%AF%AD/">https://wtyx-2018.github.io/my-blog/my-blog/2021/06/23/%E6%95%B0%E5%AD%97%E8%BD%AC%E6%B1%89%E8%AF%AD/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -761,13 +713,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/my-blog/2021/06/23/%E6%95%B0%E5%AD%97%E8%BD%AC%E6%B1%89%E8%AF%AD/">
+                <a href="/my-blog/2021/07/21/%E7%89%88%E6%9C%AC%E5%8F%B7%E6%AF%94%E8%BE%83/">
                     <div class="card-image">
                         
                         
-                        <img src="/my-blog/medias/featureimages/7.jpg" class="responsive-img" alt="数字转汉语">
+                        <img src="/my-blog/medias/featureimages/2.jpg" class="responsive-img" alt="版本号比较">
                         
-                        <span class="card-title">数字转汉语</span>
+                        <span class="card-title">版本号比较</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -778,7 +730,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-23
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-21
                         </span>
                         <span class="publish-author">
                             
@@ -806,13 +758,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/my-blog/2021/05/23/JS%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+                <a href="/my-blog/2021/05/23/js%E7%BB%A7%E6%89%BF/">
                     <div class="card-image">
                         
                         
-                        <img src="/my-blog/medias/featureimages/13.jpg" class="responsive-img" alt="JS深浅拷贝">
+                        <img src="/my-blog/medias/featureimages/1.jpg" class="responsive-img" alt="JS继承">
                         
-                        <span class="card-title">JS深浅拷贝</span>
+                        <span class="card-title">JS继承</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
